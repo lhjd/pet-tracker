@@ -7,10 +7,12 @@ module.exports = (db) => {
    */
 
   let index = (req, res) => {
-      res.render("Weight/Index");
-      // db.weight.getAll((error, allWeight) => {
-        // res.render('Weight/Index', { allWeight });
-      // });
+      // res.render("Weight/Index");
+      // set dummy petId here, to be retrieved from req.cookie.pet_id
+      let petId = 1;
+      db.weight.getAll(petId, (error, allWeight) => {
+        res.render('Weight/Index', { allWeight });
+      });
   };
 
   let add = (req, res) => {
