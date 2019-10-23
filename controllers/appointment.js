@@ -7,8 +7,8 @@ module.exports = (db) => {
      */
   
     let indexControllerCallback = (request, response) => {
-        db.vet.getAllAppointments((error, allAppoinments) => {
-          response.render('Vet/Index', { allAppoinments });
+        db.appointment.getAllAppointments((error, allAppointments) => {
+          response.render('Appointment/Index', { allAppointments });
         });
     };
   
