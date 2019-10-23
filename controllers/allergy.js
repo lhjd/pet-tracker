@@ -7,8 +7,8 @@ module.exports = (db) => {
      */
   
     let indexControllerCallback = (request, response) => {
-        db.allergy.getAll((error, allWeight) => {
-          response.render('Allergy/Index', { allWeight });
+        db.allergy.getAll((error, allAllergies) => {
+          response.render('Allergy/Index', { allAllergies });
         });
     };
   
