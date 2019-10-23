@@ -6,9 +6,12 @@ module.exports = (db) => {
      * ===========================================
      */
   
-    let indexControllerCallback = (request, response) => {
-        db.appointment.getAllAppointments((error, allAppoinments) => {
-          response.render('Appointment/Index', { allAppoinments });
+    let indexControllerCallback = (req, res) => {
+        // set dummy petId for now, to be retrieve from req.cookie.pet_id
+        let petId = 1;
+        db.appointment.getAllAppointments(petId, (error, allAppointments) => {
+          console.log("*** allAppointments ***", allAppointments);
+          res.render('Appointment/Index', { allAppointments });
         });
     };
   
