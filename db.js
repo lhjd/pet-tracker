@@ -61,6 +61,7 @@ pool.on('error', function (err) {
  * ===================================================
  */
 
+const indexModelsObject = require('./models/index')( pool );
 const vetModelsObject = require('./models/vet')( pool );
 const weightModelsObject = require('./models/weight')( pool );
 const allergyModelsObject = require('./models/allergy')( pool );
@@ -92,6 +93,7 @@ module.exports = {
   /*
    * ADD APP MODELS HERE
    */
+  index: indexModelsObject,
   vet: vetModelsObject,
   weight: weightModelsObject,
   allergy: allergyModelsObject,

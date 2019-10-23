@@ -4,6 +4,7 @@ class Footer extends React.Component {
   render() {
     return <footer>
         <ul>
+            <li><a href="/">Index</a></li>
             <li><a href="/vet">Vet</a></li>
             <li><a href="/weight">Weight</a></li>
             <li><a href="/allergy">Allergy</a></li>
