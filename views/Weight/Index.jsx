@@ -1,5 +1,6 @@
 const React = require("react");
 const Footer = require("../UI/Footer");
+const DefaultLayout = require("../Layout/DefaultLayout");
 
 class Index extends React.Component {
   render() {
@@ -9,26 +10,23 @@ class Index extends React.Component {
           <React.Fragment>
             <p key={weight.date.toString()}>{weight.date.toString()}</p>
             <p key={weight.record}>{weight.record}</p>
-            <hr/>
+            <hr />
           </React.Fragment>
         ))}
       </div>
     );
 
     return (
-      <html>
-        <head />
-        <body>
-          <h3>Weight</h3>
-          <div>
-            <p>
-              <a href="/weight/add">Add new weight record</a>
-            </p>
-          </div>
-          {allWeight}
-          <Footer />
-        </body>
-      </html>
+      <DefaultLayout title="Weight">
+        <h3>Weight</h3>
+        <div>
+          <p>
+            <a href="/weight/add">Add new weight record</a>
+          </p>
+        </div>
+        {allWeight}
+        <Footer />
+      </DefaultLayout>
     );
   }
 }

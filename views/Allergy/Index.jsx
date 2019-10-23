@@ -1,5 +1,6 @@
 const React = require("react");
 const Footer = require("../UI/Footer");
+const DefaultLayout = require("../Layout/DefaultLayout");
 
 class Index extends React.Component {
   render() {
@@ -11,21 +12,20 @@ class Index extends React.Component {
           <p>Allergy: {allergy.symptom}</p>
           <p>Food: {allergy.food}</p>
           <p>Kibbles: {allergy.kibbles_id}</p>
-          <hr/>
+          <hr />
         </React.Fragment>
       ));
     }
 
     return (
-      <html>
-        <head />
-        <body>
-          <h3>Allergy</h3>
-          <p><a href="/allergy/add">Add a new allergy</a></p>
-          {allAllergies}
-          <Footer />
-        </body>
-      </html>
+      <DefaultLayout title="Allergies">
+        <h3>Allergy</h3>
+        <p>
+          <a href="/allergy/add">Add a new allergy</a>
+        </p>
+        {allAllergies}
+        <Footer />
+      </DefaultLayout>
     );
   }
 }
