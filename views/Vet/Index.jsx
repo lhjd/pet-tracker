@@ -7,7 +7,7 @@ class Index extends React.Component {
       <html>
         <head />
         <body>
-          <h3>Appointment</h3>
+          <h3>Vet</h3>
           <Footer />
         </body>
       </html>
