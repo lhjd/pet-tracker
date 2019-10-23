@@ -21,6 +21,7 @@ class Index extends React.Component {
         <head />
         <body>
           <h3>Allergy</h3>
+          <p><a href="/allergy/add">Add a new allergy</a></p>
           {allAllergies}
           <Footer />
         </body>
