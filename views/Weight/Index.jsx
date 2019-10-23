@@ -8,6 +8,9 @@ class Index extends React.Component {
         <head />
         <body>
           <h3>Weight</h3>
+          <ul>
+            <li><a href="/weight/add">Add new weight record</a></li>
+          </ul>
           <Footer />
         </body>
       </html>
