@@ -23,7 +23,7 @@ class Index extends React.Component {
         <body>
           <h3>Add Weight</h3>
           {addedWeightMsg}
-          <form action="/weight/add" method="POST">
+          <form action="/weight" method="POST">
               <input type="date" name="date" placeholder="date" /><br/>
               <input type="number" name="record" placeholder="weight in kg" /><br/>
               <input type="submit"/>
