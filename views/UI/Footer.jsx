@@ -4,11 +4,11 @@ class Footer extends React.Component {
   render() {
     return <footer>
         <ul>
-            <li><a href="/">Index</a></li>
-            <li><a href="/appointment">Appointment</a></li>
-            <li><a href="/weight">Weight</a></li>
-            <li><a href="/allergy">Allergy</a></li>
-            <li><a href="/kibbles">Kibbles</a></li>
+            <li key="index"><a href="/">Index</a></li>
+            <li key="appointment"><a href="/appointment">Appointment</a></li>
+            <li key="weight"><a href="/weight">Weight</a></li>
+            <li key="allergy"><a href="/allergy">Allergy</a></li>
+            <li key="kibbles"><a href="/kibbles">Kibbles</a></li>
         </ul>
     </footer>;
   }

@@ -3,16 +3,16 @@ const Footer = require("../UI/Footer");
 
 class Index extends React.Component {
   render() {
-    console.log(
-      "*** this.props.addedAppointment ***",
-      this.props.addedAppointment
-    );
+    // console.log(
+    //   "*** this.props.addedAppointment ***",
+    //   this.props.addedAppointment
+    // );
     let addedAppointmentMsg = "";
     if (this.props.addedAppointment) {
       const clinic_id = this.props.addedAppointment[0].clinic_id.toString();
       const date = this.props.addedAppointment[0].date.toString();
       const time = this.props.addedAppointment[0].time.toString();
-      console.log("clinic_id, date, time", clinic_id, date, time);
+      // console.log("clinic_id, date, time", clinic_id, date, time);
       addedAppointmentMsg = <div>
         <p>Added appointment:</p>
         <p>Clinic: {clinic_id}</p>

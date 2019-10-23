@@ -22,7 +22,7 @@ module.exports = (dbPoolInstance) => {
           // invoke callback function with results after query has executed
   
           if( queryResult.rows.length > 0 ){
-            console.log("*** queryResult.rows ***", queryResult.rows);
+            // console.log("*** queryResult.rows ***", queryResult.rows);
             callback(null, queryResult.rows);
   
           }else{

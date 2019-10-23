@@ -4,15 +4,15 @@ const Footer = require("../UI/Footer");
 class Index extends React.Component {
   render() {
     let allWeight = (
-      <ul>
+      <div>
         {this.props.allWeight.map(weight => (
           <React.Fragment>
-            <li>{weight.date.toString()}</li>
-            <li>{weight.record}</li>
+            <p key={weight.date.toString()}>{weight.date.toString()}</p>
+            <p key={weight.record}>{weight.record}</p>
             <hr/>
           </React.Fragment>
         ))}
-      </ul>
+      </div>
     );
 
     return (
@@ -20,11 +20,11 @@ class Index extends React.Component {
         <head />
         <body>
           <h3>Weight</h3>
-          <ul>
-            <li>
+          <div>
+            <p>
               <a href="/weight/add">Add new weight record</a>
-            </li>
-          </ul>
+            </p>
+          </div>
           {allWeight}
           <Footer />
         </body>

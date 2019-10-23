@@ -19,16 +19,16 @@ module.exports = (db) => {
       if (req.method === "GET") {
         res.render('Appointment/Add');
       } else if (req.method === "POST") {
-        console.log("*** req.body ***", req.body);
+        // console.log("*** req.body ***", req.body);
         const pet_id = 1;
         let { clinic_id, date, time } = req.body;
 
-        console.log("*** clinic_id, date, time ***", clinic_id, date, time);
+        // console.log("*** clinic_id, date, time ***", clinic_id, date, time);
 
         time = date + " " + time + ":00 Asia/Singapore";
 
-        console.log("*** time ***", time);
-        
+        // console.log("*** time ***", time);
+
         const newAppointment = [ pet_id, clinic_id, date, time ];
 
         db.appointment.add(newAppointment, (error, addedAppointment) => {
