@@ -35,7 +35,7 @@ if( process.env.DATABASE_URL ){
   configs = {
     user: 'hongjin',
     host: '127.0.0.1',
-    database: 'doggologgo_db',
+    database: 'pet_tracker_db',
     port: 5432
   };
 }
