@@ -14,10 +14,10 @@ module.exports = (app, allModels) => {
 
   // require the controller
   const indexControllerCallbacks = require('./controllers/index')(allModels);
-  const appointmentControllerCallbacks = require('./controllers/appointment')(allModels);
-  const weightControllerCallbacks = require('./controllers/weight')(allModels);
-  const allergyControllerCallbacks = require('./controllers/allergy')(allModels);
-  const kibblesControllerCallbacks = require('./controllers/kibbles')(allModels);
+  const appointmentControllerCallbacks = require('./controllers/appointment/index')(allModels);
+  const weightControllerCallbacks = require('./controllers/weight/index')(allModels);
+  const allergyControllerCallbacks = require('./controllers/allergy/index')(allModels);
+  const kibblesControllerCallbacks = require('./controllers/kibbles/index')(allModels);
 
   app.get('/', indexControllerCallbacks.index);
   app.get('/appointment', appointmentControllerCallbacks.index);

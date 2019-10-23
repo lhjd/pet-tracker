@@ -62,10 +62,10 @@ pool.on('error', function (err) {
  */
 
 const indexModelsObject = require('./models/index')( pool );
-const appointmentModelsObject = require('./models/appointment')( pool );
-const weightModelsObject = require('./models/weight')( pool );
-const allergyModelsObject = require('./models/allergy')( pool );
-const kibblesModelsObject = require('./models/kibbles')( pool );
+const appointmentModelsObject = require('./models/appointment/index')( pool );
+const weightModelsObject = require('./models/weight/index')( pool );
+const allergyModelsObject = require('./models/allergy/index')( pool );
+const kibblesModelsObject = require('./models/kibbles/index')( pool );
 
 
 /*
