@@ -10,10 +10,8 @@ module.exports = db => {
     // set dummy petId here, to be retrieved from req.cookie.pet_id
     let petId = 1;
     db.weight.getAll(petId, (error, allWeight) => {
-      console.log("*** allWeight ***", allWeight);
       if (allWeight) {
         const data = allWeight.map(weight => ({x: weight.date, y: weight.record}));
-        console.log("*** data ***", data);
         res.send({ data });
       } else {
         res.send("");
