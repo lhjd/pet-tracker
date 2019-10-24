@@ -4,15 +4,17 @@ const Header = require("../UI/Header");
 const DefaultLayout = require("../Layout/DefaultLayout");
 const Chart = require("chart.js");
 const moment = require("moment");
+const AddModal = require("../Weight/AddModal");
 
 class Index extends React.Component {
   render() {
     let weightRows = <p>No weight record found</p>;
+    console.log("*** this.props.allWeight ***", this.props.allWeight);
     if (this.props.allWeight) {
       weightRows = this.props.allWeight.map((weight, i) => (
         <tr>
           <th scope="row">{i + 1}</th>
-          <td>{moment(weight.date.toString()).format('L')}</td>
+          <td>{moment(weight.date.toString()).format("L")}</td>
           <td>{weight.record}</td>
         </tr>
       ));
@@ -22,7 +24,7 @@ class Index extends React.Component {
     return (
       <DefaultLayout title="Weight">
         <Header />
-        <div className="container" style={{"margin-bottom": "80px"}}>
+        <div className="container" style={{ "margin-bottom": "80px" }}>
           <div className="col">
             <div className="row">
               <div className="col">
@@ -32,7 +34,16 @@ class Index extends React.Component {
             <div className="row">
               <div className="col">
                 <p>
-                  <a href="/weight/add">Add new weight record</a>
+                  {/* <a href="/weight/add">Add new weight record</a> */}
+                  <button
+                    type="button"
+                    class="btn btn-warning"
+                    data-toggle="modal"
+                    data-target="#addWeightModal"
+                    style={{"border-radius":"5%"}}
+                  >
+                    Add
+                  </button>
                 </p>
                 <canvas id="myChart" width="400" height="400"></canvas>
               </div>
@@ -54,6 +65,7 @@ class Index extends React.Component {
           </div>
         </div>
         {/* {allWeight} */}
+        <AddModal />
         <Footer />
         <script src="/weight.js"></script>
       </DefaultLayout>

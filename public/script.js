@@ -1,6 +1,4 @@
-console.log("test!!!!!");
-console.log(window.location.href);
-
+// for side drawer
 $(function() {
   "use strict";
 

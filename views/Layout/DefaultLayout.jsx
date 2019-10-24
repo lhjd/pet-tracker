@@ -42,7 +42,6 @@ class DefaultLayout extends React.Component {
           <link rel="stylesheet" href="/style.css" />
         </head>
         <body>
-
           <script
             src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"
             integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ="
@@ -68,7 +67,8 @@ class DefaultLayout extends React.Component {
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"
           ></script>
-                    {this.props.children}
+          <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+          {this.props.children}
           <script src="/script.js"></script>
         </body>
       </html>

@@ -33,7 +33,7 @@ module.exports = db => {
     if (req.method === "GET") {
       res.render("Weight/Add");
     } else if (req.method === "POST") {
-      // console.log("*** req.body ***", req.body);
+      console.log("*** req.body ***", req.body);
       const pet_id = 1;
       const { date, record } = req.body;
       // console.log("*** date, record ***", date, record);
@@ -41,7 +41,8 @@ module.exports = db => {
 
       db.weight.add(newWeight, (error, addedWeight) => {
         // console.log("*** addedWeight ***", addedWeight);
-        res.render("Weight/Add", { addedWeight });
+        res.send({ addedWeight });
+        // res.render("Weight/Add", { addedWeight });
       });
     }
   };

@@ -4,7 +4,7 @@ const DefaultLayout = require("../Layout/DefaultLayout");
 
 class Index extends React.Component {
   render() {
-    console.log("*** this.props ***", this.props.random);
+    // console.log("*** this.props ***", this.props.random);
     return (
       <DefaultLayout title="Home">
         <div className="container">
