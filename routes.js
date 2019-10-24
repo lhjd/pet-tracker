@@ -24,6 +24,7 @@ module.exports = (app, allModels) => {
   app.get('/appointment/add', appointmentControllerCallbacks.add);
   app.post('/appointment', appointmentControllerCallbacks.add);
   app.get('/weight', weightControllerCallbacks.index);
+  app.get('/data/weight/all', weightControllerCallbacks.all);
   app.get('/weight/add', weightControllerCallbacks.add);
   app.post('/weight', weightControllerCallbacks.add);
   app.get('/allergy', allergyControllerCallbacks.index);

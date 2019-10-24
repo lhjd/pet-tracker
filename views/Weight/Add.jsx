@@ -22,7 +22,7 @@ class Index extends React.Component {
         <form action="/weight" method="POST">
           <input type="date" name="date" placeholder="date" />
           <br />
-          <input type="number" name="record" placeholder="weight in kg" />
+          <input type="number" step="0.1" name="record" placeholder="weight in kg" />
           <br />
           <input type="submit" />
         </form>
