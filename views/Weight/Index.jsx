@@ -55,7 +55,7 @@ class Index extends React.Component {
         </div>
         {/* {allWeight} */}
         <Footer />
-
+        <script src="/weight.js"></script>
       </DefaultLayout>
     );
   }

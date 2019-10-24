@@ -18,6 +18,7 @@ module.exports = (app, allModels) => {
   const weightControllerCallbacks = require('./controllers/weight')(allModels);
   const allergyControllerCallbacks = require('./controllers/allergy')(allModels);
   const kibblesControllerCallbacks = require('./controllers/kibbles')(allModels);
+  const randomControllerCallbacks = require('./controllers/random')(allModels);
 
   app.get('/', indexControllerCallbacks.index);
   app.get('/appointment', appointmentControllerCallbacks.index);
@@ -31,4 +32,5 @@ module.exports = (app, allModels) => {
   app.get('/allergy/add', allergyControllerCallbacks.add);
   app.post('/allergy', allergyControllerCallbacks.add);
   app.get('/kibbles', kibblesControllerCallbacks.index);
+  app.get('/random/dog', randomControllerCallbacks.index)
 };
