@@ -1,5 +1,6 @@
 const React = require("react");
 const Footer = require("../UI/Footer");
+const Header = require("../UI/Header");
 const DefaultLayout = require("../Layout/DefaultLayout");
 const Chart = require("chart.js");
 const moment = require("moment");
@@ -15,11 +16,12 @@ class Index extends React.Component {
           <td>{weight.record}</td>
         </tr>
       ));
-      console.log("*** weightRows ***", weightRows);
+      // console.log("*** weightRows ***", weightRows);
     }
 
     return (
       <DefaultLayout title="Weight">
+        <Header />
         <div className="container" style={{"margin-bottom": "80px"}}>
           <div className="col">
             <div className="row">
@@ -54,7 +56,6 @@ class Index extends React.Component {
         {/* {allWeight} */}
         <Footer />
 
-        <script src="/weight.js"></script>
       </DefaultLayout>
     );
   }

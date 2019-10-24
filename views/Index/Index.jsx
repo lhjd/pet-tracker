@@ -7,6 +7,7 @@ class Index extends React.Component {
     return (
       <DefaultLayout title="Home">
         <h3>Home</h3>
+        
         <Footer />
       </DefaultLayout>
     );
