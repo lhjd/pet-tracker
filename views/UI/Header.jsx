@@ -12,7 +12,7 @@ class Header extends React.Component {
           <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="#">
-          Pet Tracker
+          <i class="fas fa-paw mr-2"></i>Pet Tracker
         </a>
 
         <div

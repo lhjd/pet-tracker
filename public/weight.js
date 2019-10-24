@@ -13,12 +13,11 @@ function addDataToChart(chart, label, data) {
 
 function addOneDataToChart(chart, label, data) {
   chart.data.labels.push(label);
-  chart.data.datasets.forEach((dataset) => {
-      dataset.data.push(data);
+  chart.data.datasets.forEach(dataset => {
+    dataset.data.push(data);
   });
   chart.update();
 }
-
 
 // callback for processsing the weight data from backend and update the chart
 function responseHandler() {
@@ -118,13 +117,35 @@ document
       let nextRowNum = document.querySelector("tbody").childElementCount + 1;
       thEl.innerText = nextRowNum;
       const tdEl1 = document.createElement("td");
-      tdEl1.innerText = record.addedWeight[0].date;
+      tdEl1.innerText = moment(record.addedWeight[0].date).format("YYYY-MM-DD");
+      console.log("*** record.addedWeight[0].date ***", record.addedWeight[0].date)
+      console.log("*** record.addedWeight[0].date ***", moment(record.addedWeight[0].date).format("YYYY-MM-DD"));
       const tdEl2 = document.createElement("td");
       tdEl2.innerText = record.addedWeight[0].record;
       trEl.appendChild(thEl);
       trEl.appendChild(tdEl1);
       trEl.appendChild(tdEl2);
       document.querySelector("tbody").appendChild(trEl);
+
+      let timerInterval;
+      Swal.fire({
+        title: "Weight Added!",
+        html: "",
+        timer: 500,
+        onBeforeOpen: () => {
+          Swal.showLoading();
+        },
+        onClose: () => {
+          clearInterval(timerInterval);
+        }
+      }).then(result => {
+        if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.timer
+        ) {
+          // console.log("I was closed by the timer");
+        }
+      });
     });
 
     request.open("POST", "/weight");
