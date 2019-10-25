@@ -1,4 +1,6 @@
 const React = require("react");
+const Footer = require("../UI/Footer");
+const Header = require("../UI/Header");
 
 class DefaultLayout extends React.Component {
   render() {
@@ -68,8 +70,10 @@ class DefaultLayout extends React.Component {
             crossorigin="anonymous"
           ></script>
           <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-          {this.props.children}
           <script src="/script.js"></script>
+          <Header />
+          {this.props.children}
+          <Footer />
         </body>
       </html>
     );

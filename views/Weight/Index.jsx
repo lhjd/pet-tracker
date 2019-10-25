@@ -9,7 +9,6 @@ const AddModal = require("../Weight/AddModal");
 class Index extends React.Component {
   render() {
     let weightRows = <p>No weight record found</p>;
-    console.log("*** this.props.allWeight ***", this.props.allWeight);
     if (this.props.allWeight) {
       weightRows = this.props.allWeight.map((weight, i) => (
         <tr>
@@ -18,12 +17,10 @@ class Index extends React.Component {
           <td>{weight.record}</td>
         </tr>
       ));
-      // console.log("*** weightRows ***", weightRows);
     }
 
     return (
       <DefaultLayout title="Weight">
-        <Header />
         <div className="container" style={{ "margin-bottom": "80px" }}>
           <div className="col">
             <div className="row">
@@ -34,7 +31,6 @@ class Index extends React.Component {
             <div className="row">
               <div className="col">
                 <p>
-                  {/* <a href="/weight/add">Add new weight record</a> */}
                   <button
                     type="button"
                     class="btn btn-warning"
@@ -64,9 +60,7 @@ class Index extends React.Component {
             </div>
           </div>
         </div>
-        {/* {allWeight} */}
         <AddModal />
-        <Footer />
         <script src="/weight.js"></script>
       </DefaultLayout>
     );
