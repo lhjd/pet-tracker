@@ -16,7 +16,7 @@ class Header extends React.Component {
         </a>
 
         <div
-          class="navbar-collapse offcanvas-collapse bg-dark"
+          class="navbar-collapse offcanvas-collapse bg-light"
           id="navbarsExampleDefault"
         >
           <ul class="navbar-nav mr-auto">

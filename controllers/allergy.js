@@ -23,7 +23,12 @@ module.exports = db => {
 
       db.allergy.add(newAllergy, (error, addedAllergy) => {
         // console.log("*** addedWeight ***", addedWeight);
-        res.render("Allergy/Add", { addedAllergy });
+        // db.allergy.getAll((error, allAllergies) => {
+        //   res.render("Allergy/Index", { allAllergies });
+
+        // });
+    
+        res.redirect("/allergy");
       });
     }
   };
