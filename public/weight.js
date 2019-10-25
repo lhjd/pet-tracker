@@ -47,7 +47,7 @@ function getWeightData() {
 let ctx = document.getElementById("myChart").getContext("2d");
 
 let config = {
-  type: "line",
+  type: "bar",
   data: {
     labels: [],
     datasets: [
@@ -76,6 +76,13 @@ let config = {
           scaleLabel: {
             display: true,
             labelString: "date"
+          },
+          barPercentage: 0.5,
+          barThickness: 6,
+          maxBarThickness: 8,
+          minBarLength: 2,
+          gridLines: {
+              offsetGridLines: true
           }
         }
       ],
