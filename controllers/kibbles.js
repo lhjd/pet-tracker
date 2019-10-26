@@ -11,7 +11,14 @@ module.exports = (db) => {
         let userId = 1;
 
         db.kibbles.getAll(userId, (error, allKibbles) => {
-          response.render('Kibbles/Index', { allKibbles });
+          db.pet.getPetByUserId(userId, (error, allPets) => {
+
+            const data = {
+              allKibbles,
+              allPets
+            };
+            response.render('Kibbles/Index', data);
+          })
         });
     };
   

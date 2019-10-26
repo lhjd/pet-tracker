@@ -66,6 +66,7 @@ const appointmentModelsObject = require('./models/appointment')( pool );
 const weightModelsObject = require('./models/weight')( pool );
 const allergyModelsObject = require('./models/allergy')( pool );
 const kibblesModelsObject = require('./models/kibbles')( pool );
+const petModelsObject = require('./models/pet')( pool );
 
 
 /*
@@ -97,5 +98,6 @@ module.exports = {
   appointment: appointmentModelsObject,
   weight: weightModelsObject,
   allergy: allergyModelsObject,
-  kibbles: kibblesModelsObject
+  kibbles: kibblesModelsObject,
+  pet: petModelsObject
 };

@@ -2,11 +2,13 @@ const React = require("react");
 const Footer = require("../UI/Footer");
 const DefaultLayout = require("../Layout/DefaultLayout");
 const AddKibblesModal = require("../Kibbles/AddKibblesModal");
+const AddFeedingModal = require("../Kibbles/AddFeedingModal");
 const moment = require("moment");
 
 class Index extends React.Component {
   render() {
-    console.log("*** this.props.allKibbles ***", this.props.allKibbles );
+    console.log("*** this.props.allKibbles ***", this.props.allKibbles);
+    console.log("*** this.props.allPets ***", this.props.allPets);
 
     let allKibbles = "";
     if (this.props.allKibbles) {
@@ -43,14 +45,24 @@ class Index extends React.Component {
                 Add Kibbles
               </button>
             </div>
+            <div className="col">
+              <button
+                type="button"
+                class="btn btn-warning"
+                data-toggle="modal"
+                data-target="#addFeedingModal"
+                style={{ "border-radius": "5%" }}
+              >
+                Add Feeding
+              </button>
+            </div>
           </div>
           <div className="row">
-            <div className="col">
-              {allKibbles}
-            </div>
+            <div className="col">{allKibbles}</div>
           </div>
         </div>
         <AddKibblesModal />
+        <AddFeedingModal pets={this.props.allPets}/>
         <script src="/kibbles.js"></script>
       </DefaultLayout>
     );

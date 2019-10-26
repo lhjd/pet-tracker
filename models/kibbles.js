@@ -15,8 +15,6 @@ module.exports = dbPoolInstance => {
       kibbles 
       WHERE human_id = $1`;
 
-    console.log("*** query ***", query);
-
     dbPoolInstance.query(query, [userId], (error, queryResult) => {
       if (error) {
         // invoke callback function with results after query has executed
