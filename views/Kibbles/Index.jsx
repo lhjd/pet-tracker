@@ -40,7 +40,7 @@ class Index extends React.Component {
                 data-target="#addKibblesModal"
                 style={{ "border-radius": "5%" }}
               >
-                Add
+                Add Kibbles
               </button>
             </div>
           </div>

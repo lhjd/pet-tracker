@@ -54,6 +54,7 @@ CREATE TABLE IF NOT EXISTS allergy (
 
 CREATE TABLE IF NOT EXISTS kibbles (
     id SERIAL PRIMARY KEY,
+    human_id INTEGER,
     brand TEXT,
     description TEXT,
     weight DECIMAL,
