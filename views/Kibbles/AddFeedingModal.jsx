@@ -2,16 +2,26 @@ const React = require("react");
 
 class AddModal extends React.Component {
   render() {
-      // console.log("*** this.props.pets ***", this.props.pets);
+    // console.log("*** this.props.pets ***", this.props.pets);
+    // console.log("*** this.props.kibbles ***", this.props.kibbles);
 
-      const petOptions = this.props.pets.map(pet => (
-              <option value={pet.pet_id}>{pet.name}</option>
-      ))
+    let kibblesOptions = "";
+    if (this.props.kibbles) {
+      kibblesOptions = this.props.kibbles.map(kibbles => (
+        <option value={kibbles.id}>{kibbles.brand}</option>
+      ));
+    }
+
+    let petOptions = "";
+    if (this.props.pets) {
+      petOptions = this.props.pets.map(pet => (
+        <option value={pet.pet_id}>{pet.name}</option>
+      ));
+    }
 
     //   <option value="1">Pet 1</option>
     //   <option value="2">Pet 2</option>
     //   <option value="3">Pet 3</option>
-
 
     return (
       <div
@@ -39,10 +49,22 @@ class AddModal extends React.Component {
             </div>
             <div class="modal-body">
               <form action="#">
+                <div class="form-group">
+                  <label for="record-plan-name">Plan name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="record-plan-name"
+                    name="plan_name"
+                    aria-describedby="plan name"
+                    placeholder="Enter plan name ... e.g. trial plan"
+                  />
+                </div>
+
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <button class="btn btn-outline-secondary" type="button">
-                      For
+                      Pet
                     </button>
                   </div>
                   <select
@@ -52,10 +74,29 @@ class AddModal extends React.Component {
                     aria-label="Choose pet"
                   >
                     <option selected>Choose pet...</option>
-                    { petOptions }
+                    {petOptions}
                     {/* <option value="1">Pet 1</option>
                     <option value="2">Pet 2</option>
                     <option value="3">Pet 3</option> */}
+                  </select>
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <button class="btn btn-outline-secondary" type="button">
+                      Kibbles
+                    </button>
+                  </div>
+                  <select
+                    class="custom-select"
+                    id="record-kibbles-id"
+                    name="record-kibbles-id"
+                    aria-label="Example select with button addon"
+                  >
+                    <option selected>Choose kibbles...</option>
+                    {kibblesOptions}
+                    {/* <option value="1">Kibbles 1</option>
+                    <option value="2">Kibbles 2</option>
+                    <option value="3">Kibbles 3</option> */}
                   </select>
                 </div>
                 <div class="form-group">

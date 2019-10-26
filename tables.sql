@@ -68,7 +68,8 @@ CREATE TABLE IF NOT EXISTS feeding (
     id SERIAL PRIMARY KEY,
     pet_id INTEGER,
     daily_frequency INTEGER,
-    portion_weight DECIMAL
+    portion_weight DECIMAL,
+    plan_name TEXT
 );
 
 CREATE TABLE IF NOT EXISTS feeding_kibbles (

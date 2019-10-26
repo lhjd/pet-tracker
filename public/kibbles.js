@@ -31,10 +31,14 @@ document
     const pet_id = document.querySelector("#record-pet-id").value;
     const daily_frequency = document.querySelector("#record-daily-frequency").value;
     const portion_weight = document.querySelector("#record-portion-weight").value;
+    const kibbles_id = document.querySelector("#record-kibbles-id").value;
+    const plan_name = document.querySelector("#record-plan-name").value;
     const data = { 
       pet_id,
       daily_frequency,
-      portion_weight
+      portion_weight,
+      kibbles_id,
+      plan_name
      };
     const request = new XMLHttpRequest();
     request.open("POST", "/feeding");
