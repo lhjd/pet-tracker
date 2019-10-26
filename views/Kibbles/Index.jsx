@@ -51,7 +51,7 @@ class Index extends React.Component {
 
     return (
       <DefaultLayout title="Kibbles">
-        <div className="container" style={{ "margin-bottom": "100px", "margin-top" : "20px" }}>
+        <div className="container" style={{ "margin-bottom": "100px", "margin-top" : "10px" }}>
           <div className="row">
             <div className="col">
               <h3><i class="fas fa-ring mr-2"></i>Feeding</h3>

@@ -11,16 +11,8 @@ function addDataToChart(chart, label, data) {
   chart.update();
 }
 
-function addOneDataToChart(chart, label, data) {
-  chart.data.labels.push(label);
-  chart.data.datasets.forEach(dataset => {
-    dataset.data.push(data);
-  });
-  chart.update();
-}
-
 // callback for processsing the weight data from backend and update the chart
-function responseHandler() {
+function getWeightDataResponseHandler() {
   if (this.responseText) {
     const records = JSON.parse(this.responseText).data;
     const weightLabels = records.map(record => moment(record.x).toDate());
@@ -30,24 +22,17 @@ function responseHandler() {
 }
 
 function getWeightData() {
-  // make a new request
   const request = new XMLHttpRequest();
-
-  // listen for the request response
-  request.addEventListener("load", responseHandler);
-
-  // ready the system by calling open, and specifying the url
+  request.addEventListener("load", getWeightDataResponseHandler);
   const url = "/data/weight/all";
   request.open("GET", url);
-
-  // send the request
   request.send();
 }
 
 let ctx = document.getElementById("myChart").getContext("2d");
 
 let config = {
-  type: "bar",
+  type: "line",
   data: {
     labels: [],
     datasets: [
@@ -77,13 +62,6 @@ let config = {
             display: true,
             labelString: "date"
           },
-          barPercentage: 0.5,
-          barThickness: 6,
-          maxBarThickness: 8,
-          minBarLength: 2,
-          gridLines: {
-              offsetGridLines: true
-          }
         }
       ],
       yAxes: [
@@ -104,60 +82,12 @@ getWeightData();
 
 document
   .querySelector("#addWeightRecordBtn")
-  .addEventListener("click", event => {
-    event.preventDefault();
+  .addEventListener("click", () => {
     const recordWeight = document.querySelector("#record-weight").value;
     const recordDate = document.querySelector("#record-date").value;
     var data = { record: recordWeight, date: recordDate };
-
     var request = new XMLHttpRequest(); // new HttpRequest instance
-
-    request.addEventListener("load", function() {
-      const record = JSON.parse(this.responseText);
-      const weightLabel = moment(record.addedWeight[0].date).toDate();
-      const weight = record.addedWeight[0].record;
-      addOneDataToChart(weightChart, weightLabel, weight);
-
-      const trEl = document.createElement("tr");
-      const thEl = document.createElement("th");
-      thEl.setAttribute("scope", "row");
-      let nextRowNum = document.querySelector("tbody").childElementCount + 1;
-      thEl.innerText = nextRowNum;
-      const tdEl1 = document.createElement("td");
-      tdEl1.innerText = moment(record.addedWeight[0].date).format("YYYY-MM-DD");
-      console.log("*** record.addedWeight[0].date ***", record.addedWeight[0].date)
-      console.log("*** record.addedWeight[0].date ***", moment(record.addedWeight[0].date).format("YYYY-MM-DD"));
-      const tdEl2 = document.createElement("td");
-      tdEl2.innerText = record.addedWeight[0].record;
-      trEl.appendChild(thEl);
-      trEl.appendChild(tdEl1);
-      trEl.appendChild(tdEl2);
-      document.querySelector("tbody").appendChild(trEl);
-
-      let timerInterval;
-      Swal.fire({
-        title: "Weight Added!",
-        html: "",
-        timer: 500,
-        onBeforeOpen: () => {
-          Swal.showLoading();
-        },
-        onClose: () => {
-          clearInterval(timerInterval);
-        }
-      }).then(result => {
-        if (
-          /* Read more about handling dismissals below */
-          result.dismiss === Swal.DismissReason.timer
-        ) {
-          // console.log("I was closed by the timer");
-        }
-      });
-    });
-
     request.open("POST", "/weight");
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
     request.send(JSON.stringify(data));
-    $("#addWeightModal").modal("hide");
   });

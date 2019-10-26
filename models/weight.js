@@ -36,7 +36,7 @@ module.exports = (dbPoolInstance) => {
 
   let getAll = (petId, callback) => {
 
-    let query = 'SELECT * FROM weight WHERE pet_id = $1';
+    let query = 'SELECT * FROM weight WHERE pet_id = $1 ORDER BY date ASC';
 
     dbPoolInstance.query(query, [petId], (error, queryResult) => {
       if( error ){
