@@ -51,10 +51,10 @@ class Index extends React.Component {
 
     return (
       <DefaultLayout title="Kibbles">
-        <div className="container" style={{ "margin-bottom": "100px", "margin-top" : "30px" }}>
+        <div className="container" style={{ "margin-bottom": "100px", "margin-top" : "20px" }}>
           <div className="row">
             <div className="col">
-              <h3>Kibbles</h3>
+              <h3><i class="fas fa-ring mr-2"></i>Feeding</h3>
             </div>
           </div>
           <div className="row m-3">
@@ -64,9 +64,9 @@ class Index extends React.Component {
                 class="btn btn-warning"
                 data-toggle="modal"
                 data-target="#addKibblesModal"
-                style={{ "border-radius": "5%" }}
+                style={{ "border-radius": "5%", "width" : "120px" }}
               >
-                <i class="fas fa-plus-circle mr-2"></i>Add Kibbles
+                <i class="fas fa-plus-circle mr-2"></i> Kibbles
               </button>
             </div>
             <div className="col text-center">
@@ -75,23 +75,23 @@ class Index extends React.Component {
                 class="btn btn-warning"
                 data-toggle="modal"
                 data-target="#addFeedingModal"
-                style={{ "border-radius": "5%" }}
+                style={{ "border-radius": "5%", "width": "120px"}}
               >
-                <i class="fas fa-plus-circle mr-2"></i> Feeding Plan
+                <i class="fas fa-plus-circle mr-2"></i> Plan
               </button>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col">
-              <h6><i class="fas fa-box-open mr-2"></i>Your kibbles:</h6>
-              <ol>{allKibbles}</ol>
-              <hr />
             </div>
           </div>
           <div className="row">
             <div className="col">
               <h6><i class="fas fa-dog mr-2"></i>Your pets:</h6>
               <ol>{allPets}</ol>
+              <hr />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              <h6><i class="fas fa-box-open mr-2"></i>Your kibbles:</h6>
+              <ol>{allKibbles}</ol>
               <hr />
             </div>
           </div>

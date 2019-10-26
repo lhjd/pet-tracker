@@ -18,7 +18,7 @@ class Footer extends React.Component {
         </a>
         <a class="navbar-brand text-center" href="/kibbles">
           <i class="fas fa-ring"></i>
-          <h6 class="icon-text">Kibbles</h6>
+          <h6 class="icon-text">Feeding</h6>
         </a>
         <a class="navbar-brand text-center" href="/allergy">
           <i class="fas fa-bomb"></i>
