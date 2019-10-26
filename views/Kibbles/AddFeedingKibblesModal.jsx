@@ -2,7 +2,7 @@ const React = require("react");
 
 class AddModal extends React.Component {
   render() {
-      console.log("*** this.props ***", this.props);
+      // console.log("*** this.props ***", this.props);
 
     return (
       <div

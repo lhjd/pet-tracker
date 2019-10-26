@@ -10,7 +10,7 @@ module.exports = (dbPoolInstance) => {
     let getPetByUserId = (userId, callback) => {
   
       let query = 'SELECT * FROM pet INNER JOIN human_pet ON human_pet.pet_id = pet.id WHERE human_pet.human_id = $1';
-    console.log("*** query ***", query);
+    // console.log("*** query ***", query);
 
       dbPoolInstance.query(query, [userId], (error, queryResult) => {
         if( error ){

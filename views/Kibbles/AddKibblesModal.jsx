@@ -105,7 +105,7 @@ class AddModal extends React.Component {
                 <input
                   type="submit"
                   class="btn btn-primary btn-warning"
-                  id="addAllergyRecordBtn"
+                  id="addKibblesRecordBtn"
                   defaultValue="Add"
                 />
               </form>

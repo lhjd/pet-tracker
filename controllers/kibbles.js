@@ -6,7 +6,7 @@ module.exports = (db) => {
      * ===========================================
      */
   
-    let indexControllerCallback = (request, response) => {
+    const index = (request, response) => {
         // userId = request.cookies.user_id;
         let userId = 1;
 
@@ -20,7 +20,33 @@ module.exports = (db) => {
             response.render('Kibbles/Index', data);
           })
         });
-    };
+    }
+
+    const add = (req, res) => {
+        // userId = req.cookies.user_id;
+        let userId = 1;
+        console.log("*** kibbles controller add ***");
+        console.log("*** req.body ***", req.body);
+
+        db.kibbles.add(req, userId, (error, addedKibble) => {
+          console.log("*** addedKibble ***", addedKibble);
+          res.redirect("/kibbles");
+        })
+
+    }
+
+    const addFeeding = (req, res) => {
+        // userId = req.cookies.user_id;
+        let userId = 1;
+        console.log("*** kibbles controller addFeeding ***");
+        console.log("*** req.body ***", req.body);
+
+        db.kibbles.addFeeding(req, userId, (error, addedFeeding) => {
+          console.log("*** addedFeeding ***", addedFeeding);
+          res.redirect("/kibbles");
+        })
+
+    }
   
   
     /**
@@ -29,7 +55,9 @@ module.exports = (db) => {
      * ===========================================
      */
     return {
-      index: indexControllerCallback,
+      index,
+      add,
+      addFeeding
     };
   
   }

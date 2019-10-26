@@ -8,8 +8,8 @@ const moment = require("moment");
 
 class Index extends React.Component {
   render() {
-    console.log("*** this.props.allKibbles ***", this.props.allKibbles);
-    console.log("*** this.props.allPets ***", this.props.allPets);
+    // console.log("*** this.props.allKibbles ***", this.props.allKibbles);
+    // console.log("*** this.props.allPets ***", this.props.allPets);
 
     let allKibbles = "";
     if (this.props.allKibbles) {
@@ -22,13 +22,14 @@ class Index extends React.Component {
           <p>Purchased on: {moment(kibble.date_purchased).format("L")}</p>
           <p>Opened on: {moment(kibble.date_opened).format("L")}</p>
           <p>Expiring on: {moment(kibble.date_expiry).format("L")}</p>
+          <hr/>
         </div>
       ));
     }
 
     return (
       <DefaultLayout title="Kibbles">
-        <div className="container">
+        <div className="container" style={{"margin-bottom":"100px"}}>
           <div className="row">
             <div className="col">
               <h3>Kibbles</h3>

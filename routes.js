@@ -32,5 +32,7 @@ module.exports = (app, allModels) => {
   app.get('/allergy/add', allergyControllerCallbacks.add);
   app.post('/allergy', allergyControllerCallbacks.add);
   app.get('/kibbles', kibblesControllerCallbacks.index);
+  app.post('/kibbles', kibblesControllerCallbacks.add);
+  app.post('/feeding', kibblesControllerCallbacks.addFeeding);
   app.get('/random/dog', randomControllerCallbacks.index)
 };

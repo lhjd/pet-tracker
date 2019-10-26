@@ -2,7 +2,7 @@ const React = require("react");
 
 class AddModal extends React.Component {
   render() {
-      console.log("*** this.props.pets ***", this.props.pets);
+      // console.log("*** this.props.pets ***", this.props.pets);
 
       const petOptions = this.props.pets.map(pet => (
               <option value={pet.pet_id}>{pet.name}</option>
@@ -61,7 +61,7 @@ class AddModal extends React.Component {
                 <div class="form-group">
                   <label for="record-daily-frequency">Daily Frequency</label>
                   <input
-                    type="text"
+                    type="number"
                     class="form-control"
                     id="record-daily-frequency"
                     name="daily_frequency"
@@ -72,7 +72,8 @@ class AddModal extends React.Component {
                 <div class="form-group">
                   <label for="record-portion-weight">Portion Weight</label>
                   <input
-                    type="text"
+                    type="number"
+                    step="0.1"
                     class="form-control"
                     id="record-portion-weight"
                     name="portion_weight"
