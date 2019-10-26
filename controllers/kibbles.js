@@ -7,7 +7,10 @@ module.exports = (db) => {
      */
   
     let indexControllerCallback = (request, response) => {
-        db.kibbles.getAll((error, allKibbles) => {
+        // userId = request.cookies.user_id;
+        let userId = 1;
+
+        db.kibbles.getAll(userId, (error, allKibbles) => {
           response.render('Kibbles/Index', { allKibbles });
         });
     };
