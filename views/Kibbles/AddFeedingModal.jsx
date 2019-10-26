@@ -47,8 +47,9 @@ class AddModal extends React.Component {
                   </div>
                   <select
                     class="custom-select"
-                    id="inputGroupSelect03"
-                    aria-label="Example select with button addon"
+                    id="record-pet-id"
+                    name="record-pet-id"
+                    aria-label="Choose pet"
                   >
                     <option selected>Choose pet...</option>
                     { petOptions }
