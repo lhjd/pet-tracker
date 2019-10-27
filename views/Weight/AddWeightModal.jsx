@@ -1,21 +1,26 @@
 const React = require("react");
 const moment = require("moment");
 
-class AddModal extends React.Component {
+class AddWeightModal extends React.Component {
   render() {
-    // let addedWeightMsg = "";
-    // if (this.props.addedWeight) {
-    //   const record = this.props.addedWeight[0].record.toString();
-    //   const date = this.props.addedWeight[0].date.toString();
-    //   addedWeightMsg = (
-    //     <p>
-    //       Added weight: {record} kg on {date}.
-    //     </p>
-    //   );
-    // }
+    console.log("*** this.props.pets ***", this.props.pets);
+
+    let petOptions = [];
+    if (this.props.pets) {
+      petOptions = this.props.pets.map((pet, index) => {
+        if (index === 0) {
+          return (
+            <option value={pet.pet_id} selected>
+              {pet.name}
+            </option>
+          );
+        } else {
+          return <option value={pet.pet_id}>{pet.name}</option>;
+        }
+      });
+    }
 
     return (
-      //   <DefaultLayout title="Add Weight Record">
       <div
         class="modal fade"
         id="addWeightModal"
@@ -28,7 +33,7 @@ class AddModal extends React.Component {
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">
-                Add Weight Record
+                <i class="fas fa-plus-circle mr-2"></i> weight record
               </h5>
               <button
                 type="button"
@@ -40,10 +45,24 @@ class AddModal extends React.Component {
               </button>
             </div>
             <div class="modal-body">
-              {/* <h3>Add Weight Record</h3> */}
-              {/* {addedWeightMsg} */}
               <form>
                 <div class="form-group">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <button class="btn btn-outline-secondary" type="button">
+                        For
+                      </button>
+                    </div>
+                    <select
+                      class="custom-select"
+                      id="record-pet-id"
+                      name="record-pet-id"
+                      aria-label="Choose pet"
+                    >
+                      {petOptions}
+                    </select>
+                  </div>
+
                   <label for="weight">Weight</label>
                   <input
                     type="number"
@@ -65,22 +84,13 @@ class AddModal extends React.Component {
                     defaultValue={moment().format("YYYY-MM-DD")}
                   />
                 </div>
-                <input type="submit" class="btn btn-primary btn-warning" id="addWeightRecordBtn" defaultValue="Add"/>
-                  {/* Add
-                </button> */}
-              </form>
-              {/* <form action="/weight" method="POST">
-                <input type="date" name="date" placeholder="date" />
-                <br />
                 <input
-                  type="number"
-                  step="0.1"
-                  name="record"
-                  placeholder="weight in kg"
+                  type="submit"
+                  class="btn btn-primary btn-warning"
+                  id="addWeightRecordBtn"
+                  defaultValue="Add"
                 />
-                <br />
-                <input type="submit" />
-              </form> */}
+              </form>
             </div>
           </div>
         </div>
@@ -89,4 +99,4 @@ class AddModal extends React.Component {
   }
 }
 
-module.exports = AddModal;
+module.exports = AddWeightModal;

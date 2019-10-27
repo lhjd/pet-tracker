@@ -6,45 +6,50 @@ module.exports = db => {
    */
 
   let all = (req, res) => {
-    // res.render("Weight/Index");
-    // set dummy petId here, to be retrieved from req.cookie.pet_id
-    let petId = 1;
-    db.weight.getAll(petId, (error, allWeight) => {
-      if (allWeight) {
-        const data = allWeight.map(weight => ({x: weight.date, y: weight.record}));
+    // const petId = req.body.petId;
+    const petId = 1;
+    db.weight.getAllWeightsByPet(petId, (error, allWeightsByPet) => {
+      if (allWeightsByPet) {
+        const data = allWeightsByPet.map(weight => ({
+          x: weight.date,
+          y: weight.record
+        }));
         res.send({ data });
       } else {
         res.send("");
       }
-
     });
   };
 
-  let index = (req, res) => {
-    // res.render("Weight/Index");
-    // set dummy petId here, to be retrieved from req.cookie.pet_id
-    let petId = 1;
-    db.weight.getAll(petId, (error, allWeight) => {
-      res.render("Weight/Index", { allWeight });
+  const index = (req, res) => {
+    // const userId = req.cookies.user_id;
+    const userId = 1;
+
+    db.pet.getPetByUserId(userId, (error, allPets) => {
+      // console.log("*** allPets ***", allPets);
+      if (allPets) {
+        const defaultPetId = allPets[0].pet_id;
+        console.log("*** defaultPetId ***", defaultPetId);
+        db.weight.getAllWeightsByPet(defaultPetId, (error, allWeightsByPet) => {
+          const data = {
+            allWeightsByPet,
+            allPets
+          };
+          res.render("Weight/Index", data);
+        });
+      } else {
+        res.render("Weight/Index");
+      }
     });
   };
 
-  let add = (req, res) => {
-    if (req.method === "GET") {
-      res.render("Weight/Add");
-    } else if (req.method === "POST") {
-      console.log("*** req.body ***", req.body);
-      const pet_id = 1;
-      const { date, record } = req.body;
-      // console.log("*** date, record ***", date, record);
-      const newWeight = [pet_id, date, record];
+  const addWeight = (req, res) => {
+    const { pet_id, date, record,  } = req.body;
+    const newWeight = [pet_id, date, record];
 
-      db.weight.add(newWeight, (error, addedWeight) => {
-        // console.log("*** addedWeight ***", addedWeight);
-        res.send({ addedWeight });
-        // res.render("Weight/Add", { addedWeight });
-      });
-    }
+    db.weight.addWeight(newWeight, (error, addedWeight) => {
+      res.redirect("/weight");
+    });
   };
 
   /**
@@ -54,7 +59,7 @@ module.exports = db => {
    */
   return {
     index,
-    add,
+    addWeight,
     all
   };
 };

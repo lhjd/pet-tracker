@@ -4,13 +4,15 @@ const Header = require("../UI/Header");
 const DefaultLayout = require("../Layout/DefaultLayout");
 const Chart = require("chart.js");
 const moment = require("moment");
-const AddModal = require("../Weight/AddModal");
+const AddWeightModal = require("./AddWeightModal");
 
 class Index extends React.Component {
   render() {
+    console.log("*** this.props.allPets ***", this.props.allPets);
+    console.log("*** this.props.allWeightsByPet ***", this.props.allWeightsByPet);
     let weightRows = <p>No weight record found</p>;
-    if (this.props.allWeight) {
-      weightRows = this.props.allWeight.map((weight, i) => (
+    if (this.props.allWeightsByPet) {
+      weightRows = this.props.allWeightsByPet.map((weight, i) => (
         <tr>
           <th scope="row">{i + 1}</th>
           <td>{moment(weight.date.toString()).format("L")}</td>
@@ -22,7 +24,6 @@ class Index extends React.Component {
     return (
       <DefaultLayout title="Weight">
         <div className="container" style={{ "margin-bottom": "100px", "margin-top": "10px"}}>
-          <div className="col">
             <div className="row">
               <div className="col">
                 <h3><i class="fas fa-weight mr-2"></i>Weight</h3>
@@ -58,9 +59,8 @@ class Index extends React.Component {
                 </table>
               </div>
             </div>
-          </div>
         </div>
-        <AddModal />
+        <AddWeightModal pets={this.props.allPets}/>
         <script src="/weight.js"></script>
       </DefaultLayout>
     );

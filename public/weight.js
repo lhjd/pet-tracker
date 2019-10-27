@@ -14,6 +14,7 @@ function addDataToChart(chart, label, data) {
 // callback for processsing the weight data from backend and update the chart
 function getWeightDataResponseHandler() {
   if (this.responseText) {
+    console.log("*** this.responseText ***", this.responseText);
     const records = JSON.parse(this.responseText).data;
     const weightLabels = records.map(record => moment(record.x).toDate());
     const weight = records.map(record => record.y);
@@ -85,7 +86,8 @@ document
   .addEventListener("click", () => {
     const recordWeight = document.querySelector("#record-weight").value;
     const recordDate = document.querySelector("#record-date").value;
-    var data = { record: recordWeight, date: recordDate };
+    const recordPetId = document.querySelector("#record-pet-id").value;
+    var data = { record: recordWeight, date: recordDate, pet_id: recordPetId };
     var request = new XMLHttpRequest(); // new HttpRequest instance
     request.open("POST", "/weight");
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
