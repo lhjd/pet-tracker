@@ -7,10 +7,10 @@ const moment = require("moment");
 
 class Index extends React.Component {
   render() {
-    let allAppointments = [];
+    let allAppointmentsByUser = [];
 
-    if (this.props.allAppointments) {
-      allAppointments = this.props.allAppointments.map(appointment => (
+    if (this.props.allAppointmentsByUser) {
+      allAppointmentsByUser = this.props.allAppointmentsByUser.map(appointment => (
         <div>
           <p>
             <strong>{appointment.name}</strong>
@@ -32,12 +32,9 @@ class Index extends React.Component {
           className="container"
           style={{ "margin-bottom": "100px", "margin-top": "10px" }}
         >
-          <div className="row">
+          <div className="row my-2">
             <div className="col">
-              <h3>Appointment</h3>
-              <p>
-                <a href="/appointment/add">Add a new appointment</a>
-              </p>
+              <h3><i class="fas fa-calendar-alt mr-2"></i>Appointment</h3>
             </div>
           </div>
           <div className="row">
@@ -65,7 +62,7 @@ class Index extends React.Component {
             </div>
           </div>
           <div className="row">
-            <div className="col">{allAppointments}</div>
+            <div className="col">{allAppointmentsByUser}</div>
           </div>
         </div>
         <Footer />

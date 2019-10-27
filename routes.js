@@ -21,10 +21,11 @@ module.exports = (app, allModels) => {
   const randomControllerCallbacks = require('./controllers/random')(allModels);
 
   app.get('/', indexControllerCallbacks.index);
+
   app.get('/appointment', appointmentControllerCallbacks.index);
-  app.get('/appointment/add', appointmentControllerCallbacks.add);
-  app.post('/appointment', appointmentControllerCallbacks.addAppointment);
-  app.post('/clinic', appointmentControllerCallbacks.addClinic);
+  app.post('/appointment', appointmentControllerCallbacks.addAppointmentByUser);
+  app.post('/clinic', appointmentControllerCallbacks.addClinicByUser);
+
   app.get('/weight', weightControllerCallbacks.index);
   app.get('/data/weight/all', weightControllerCallbacks.all);
   app.get('/weight/add', weightControllerCallbacks.add);

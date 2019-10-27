@@ -16,7 +16,7 @@ class AddClinicModal extends React.Component {
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="addClinicModalLabel">
-                Add Clinic
+                <i class="fas fa-plus-circle mr-2"></i>clinic
               </h5>
               <button
                 type="button"

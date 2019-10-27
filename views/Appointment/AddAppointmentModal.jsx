@@ -10,16 +10,15 @@ class AddAppointmentModal extends React.Component {
     if (this.props.clinics) {
       clinicOptions = this.props.clinics.map(clinic => (
         <option value={clinic.id}>{clinic.name}</option>
-      ))
+      ));
     }
 
     let petOptions = [];
     if (this.props.pets) {
       petOptions = this.props.pets.map(pet => (
         <option value={pet.id}>{pet.name}</option>
-      ))
+      ));
     }
-
 
     return (
       <div
@@ -34,7 +33,7 @@ class AddAppointmentModal extends React.Component {
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="addAppointmentModalLabel">
-                Add Appointment
+                <i class="fas fa-plus-circle mr-2"></i>appointment
               </h5>
               <button
                 type="button"
