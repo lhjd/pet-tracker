@@ -3,40 +3,33 @@
  * Export model functions as a module
  * ===========================================
  */
-module.exports = (dbPoolInstance) => {
+module.exports = dbPoolInstance => {
+  // `dbPoolInstance` is accessible within this function scope
+  const add = (newAppointment, callback) => {
+    let query =
+      "INSERT INTO appointment (pet_id, clinic_id, date, time) VALUES ($1, $2, $3, $4) RETURNING *";
 
-    // `dbPoolInstance` is accessible within this function scope
-    let add = (newAppointment, callback) => {
+    dbPoolInstance.query(query, newAppointment, (error, queryResult) => {
+      if (error) {
+        // invoke callback function with results after query has executed
+        console.log("*** error ***", error);
+        callback(error, null);
+      } else {
+        // invoke callback function with results after query has executed
 
-      let query = 'INSERT INTO appointment (pet_id, clinic_id, date, time) VALUES ($1, $2, $3, $4) RETURNING *';
-  
-      dbPoolInstance.query(query, newAppointment, (error, queryResult) => {
-        if( error ){
-  
-          // invoke callback function with results after query has executed
-          console.log("*** error ***", error);
-          callback(error, null);
-  
-        }else{
-  
-          // invoke callback function with results after query has executed
-  
-          if( queryResult.rows.length > 0 ){
-            // console.log("*** queryResult.rows ***", queryResult.rows);
-            callback(null, queryResult.rows);
-  
-          }else{
-            callback(null, null);
-  
-          }
+        if (queryResult.rows.length > 0) {
+          // console.log("*** queryResult.rows ***", queryResult.rows);
+          callback(null, queryResult.rows);
+        } else {
+          callback(null, null);
         }
-      });
-    };
-  
-    let getAllAppointments = (userId, callback) => {
-  
-      // let query = 'SELECT * FROM appointment INNER JOIN clinic ON appointment.clinic_id = clinic.id WHERE clinic.pet_id = $1';
-      let query = `SELECT 
+      }
+    });
+  }
+
+  const getAllAppointments = (userId, callback) => {
+    // let query = 'SELECT * FROM appointment INNER JOIN clinic ON appointment.clinic_id = clinic.id WHERE clinic.pet_id = $1';
+    let query = `SELECT 
                   pet.name AS pet_name, 
                   clinic.name AS clinic_name, clinic.address, clinic.phone,
                   appointment.date, appointment.time
@@ -52,31 +45,69 @@ module.exports = (dbPoolInstance) => {
                   ON pet.id = human_pet.pet_id 
                   WHERE human_pet.human_id = $1)`;
 
-      dbPoolInstance.query(query, [userId], (error, queryResult) => {
-        if( error ){
+    dbPoolInstance.query(query, [userId], (error, queryResult) => {
+      if (error) {
+        console.log("*** error ***", error);
+        // invoke callback function with results after query has executed
+        callback(error, null);
+      } else {
+        // invoke callback function with results after query has executed
+
+        if (queryResult.rows.length > 0) {
+          // console.log("*** queryResult.rows ***", queryResult.rows);
+          callback(null, queryResult.rows);
+        } else {
+          callback(null, null);
+        }
+      }
+    });
+  }
+
+  const addClinic = (userId, newClinic, callback) => {
+    const { name, address, phone } = newClinic;
+    const query = `INSERT INTO clinic (human_id, name, address, phone) VALUES ($1, $2, $3, $4) RETURNING *`;
+
+    dbPoolInstance.query(
+      query,
+      [userId, name, address, phone],
+      (error, queryResult) => {
+        if (error) {
           console.log("*** error ***", error);
-          // invoke callback function with results after query has executed
           callback(error, null);
-  
-        }else{
-  
-          // invoke callback function with results after query has executed
-  
-          if( queryResult.rows.length > 0 ){
-            // console.log("*** queryResult.rows ***", queryResult.rows);
+        } else {
+          if (queryResult.rows.length > 0) {
             callback(null, queryResult.rows);
-  
-          }else{
+          } else {
             callback(null, null);
-  
           }
         }
-      });
-    };
-  
-    return {
-      getAllAppointments,
-      add
-    };
+      }
+    );
+  }
+
+  const getClinicByUser = (userId, callback) => {
+
+    const query = `SELECT * FROM clinic WHERE human_id = $1`
+
+    dbPoolInstance.query(query, [userId], (error, queryResult) => {
+      if (error) {
+        console.log("*** error ***", error);
+        callback(error, null);
+      } else {
+        if (queryResult.rows.length > 0) {
+          callback(null, queryResult.rows);
+        } else {
+          callback(null, null);
+        }
+      }
+    })
+  }
+
+
+  return {
+    getAllAppointments,
+    add,
+    addClinic,
+    getClinicByUser
   };
-  
+};

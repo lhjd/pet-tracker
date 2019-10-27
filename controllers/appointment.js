@@ -9,7 +9,13 @@ module.exports = db => {
     // let userId = req.cookies.userId;
     let userId = 1;
       db.appointment.getAllAppointments(userId, (error, allAppointments) => {
-        res.render("Appointment/Index", { allAppointments });
+        db.appointment.getClinicByUser(userId, (error, allClinicsByUser) => {
+          const data = {
+            allAppointments,
+            allClinicsByUser
+          };
+          res.render("Appointment/Index", data);
+        })
       });
   };
 
@@ -36,6 +42,17 @@ module.exports = db => {
     }
   };
 
+  let addClinic = (req, res) => {
+      // console.log("*** req.body ***", req.body);
+      // const userId = req.cookies.userId;
+      const userId = 1;
+      const newClinic = req.body;
+      db.appointment.addClinic(userId, newClinic, (error, addedClinic) => {
+        console.log("*** addedClinic ***", addedClinic);
+        res.redirect("/appointment");
+      });
+  };
+
   /**
    * ===========================================
    * Export controller functions as a module
@@ -43,6 +60,7 @@ module.exports = db => {
    */
   return {
     index,
-    add
+    add,
+    addClinic
   };
 };

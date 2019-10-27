@@ -1,12 +1,17 @@
 const React = require("react");
 const Footer = require("../UI/Footer");
 const DefaultLayout = require("../Layout/DefaultLayout");
+const AddClinicModal = require("../Appointment/AddClinicModal");
 
 class Index extends React.Component {
   render() {
+    // console.log(
+    //   "*** this.props.allAppointments ***",
+    //   this.props.allAppointments
+    // );
     console.log(
-      "*** this.props.allAppointments ***",
-      this.props.allAppointments
+      "*** this.props.allClinicsByUser ***",
+      this.props.allClinicsByUser
     );
 
     let allAppointments = [];
@@ -41,10 +46,25 @@ class Index extends React.Component {
             </div>
           </div>
           <div className="row">
+            <div className="col">
+              <button
+                type="button"
+                class="btn btn-warning"
+                data-toggle="modal"
+                data-target="#addClinicModal"
+                style={{ "border-radius": "5%", width: "120px" }}
+              >
+                <i class="fas fa-plus-circle mr-2"></i>clinic
+              </button>
+            </div>
+          </div>
+          <div className="row">
             <div className="col">{allAppointments}</div>
           </div>
         </div>
         <Footer />
+        <AddClinicModal/>
+        <script src="/appointment.js"></script>
       </DefaultLayout>
     );
   }
