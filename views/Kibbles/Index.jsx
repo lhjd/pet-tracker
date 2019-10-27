@@ -66,7 +66,7 @@ class Index extends React.Component {
                 data-target="#addKibblesModal"
                 style={{ "border-radius": "5%", "width" : "120px" }}
               >
-                <i class="fas fa-plus-circle mr-2"></i> Kibbles
+                <i class="fas fa-plus-circle mr-2"></i>kibbles
               </button>
             </div>
             <div className="col text-center">
@@ -77,7 +77,7 @@ class Index extends React.Component {
                 data-target="#addFeedingModal"
                 style={{ "border-radius": "5%", "width": "120px"}}
               >
-                <i class="fas fa-plus-circle mr-2"></i> Plan
+                <i class="fas fa-plus-circle mr-2"></i>plan
               </button>
             </div>
           </div>

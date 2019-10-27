@@ -21,14 +21,14 @@ class Index extends React.Component {
 
     return (
       <DefaultLayout title="Weight">
-        <div className="container" style={{ "margin-bottom": "80px", "margin-top": "10px"}}>
+        <div className="container" style={{ "margin-bottom": "100px", "margin-top": "10px"}}>
           <div className="col">
             <div className="row">
               <div className="col">
                 <h3><i class="fas fa-weight mr-2"></i>Weight</h3>
               </div>
             </div>
-            <div className="row">
+            <div className="row my-2">
               <div className="col">
                 <p>
                   <button
@@ -38,7 +38,7 @@ class Index extends React.Component {
                     data-target="#addWeightModal"
                     style={{"border-radius":"5%"}}
                   >
-                    <i class="fas fa-plus-circle mr-2"></i> Weight Record
+                    <i class="fas fa-plus-circle mr-2"></i>record
                   </button>
                 </p>
                 <canvas id="myChart" width="400" height="400"></canvas>

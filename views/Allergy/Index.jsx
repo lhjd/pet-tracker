@@ -18,13 +18,13 @@ class Index extends React.Component {
 
     return (
       <DefaultLayout title="Allergies">
-        <div className="container" style={{ "margin-bottom": "80px" }}>
+        <div className="container" style={{ "margin-bottom": "100px", "margin-top" : "10px" }}>
           <div className="row">
             <div className="col">
-              <h3>Allergy</h3>
+              <h3><i class="fas fa-bomb mr-2"></i>Allergy</h3>
             </div>
           </div>
-          <div className="row">
+          <div className="row my-2">
             <div className="col">
               <button
                 type="button"
@@ -33,7 +33,7 @@ class Index extends React.Component {
                 data-target="#addAllergyModal"
                 style={{ "border-radius": "5%" }}
               >
-                Add
+                <i class="fas fa-plus-circle mr-2"></i>record
               </button>
             </div>
           </div>
