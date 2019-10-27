@@ -33,13 +33,28 @@ module.exports = (dbPoolInstance) => {
       });
     };
   
-    let getAllAppointments = (petId, callback) => {
+    let getAllAppointments = (userId, callback) => {
   
-      let query = 'SELECT * FROM appointment INNER JOIN clinic ON appointment.clinic_id = clinic.id WHERE pet_id = $1';
-  
-      dbPoolInstance.query(query, [petId], (error, queryResult) => {
+      // let query = 'SELECT * FROM appointment INNER JOIN clinic ON appointment.clinic_id = clinic.id WHERE clinic.pet_id = $1';
+      let query = `SELECT 
+                  pet.name AS pet_name, 
+                  clinic.name AS clinic_name, clinic.address, clinic.phone,
+                  appointment.date, appointment.time
+                  FROM 
+                  appointment INNER JOIN clinic 
+                  ON appointment.clinic_id = clinic.id
+                  INNER JOIN pet
+                  ON appointment.pet_id = pet.id
+                  WHERE appointment.pet_id 
+                  IN 
+                  (SELECT pet_id FROM 
+                  pet INNER JOIN human_pet 
+                  ON pet.id = human_pet.pet_id 
+                  WHERE human_pet.human_id = $1)`;
+
+      dbPoolInstance.query(query, [userId], (error, queryResult) => {
         if( error ){
-  
+          console.log("*** error ***", error);
           // invoke callback function with results after query has executed
           callback(error, null);
   
