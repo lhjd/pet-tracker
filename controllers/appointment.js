@@ -8,15 +8,18 @@ module.exports = db => {
   let index = (req, res) => {
     // let userId = req.cookies.userId;
     let userId = 1;
-      db.appointment.getAllAppointments(userId, (error, allAppointments) => {
-        db.appointment.getClinicByUser(userId, (error, allClinicsByUser) => {
+    db.appointment.getAllAppointments(userId, (error, allAppointments) => {
+      db.appointment.getClinicByUser(userId, (error, allClinicsByUser) => {
+        db.pet.getPetByUserId(userId, (error, allPetsByUser) => {
           const data = {
             allAppointments,
-            allClinicsByUser
+            allClinicsByUser,
+            allPetsByUser
           };
           res.render("Appointment/Index", data);
-        })
+        });
       });
+    });
   };
 
   let add = (req, res) => {
@@ -42,16 +45,36 @@ module.exports = db => {
     }
   };
 
-  let addClinic = (req, res) => {
-      // console.log("*** req.body ***", req.body);
-      // const userId = req.cookies.userId;
-      const userId = 1;
-      const newClinic = req.body;
-      db.appointment.addClinic(userId, newClinic, (error, addedClinic) => {
-        console.log("*** addedClinic ***", addedClinic);
-        res.redirect("/appointment");
-      });
+  const addClinic = (req, res) => {
+    // console.log("*** req.body ***", req.body);
+    // const userId = req.cookies.userId;
+    const userId = 1;
+    const newClinic = req.body;
+    db.appointment.addClinic(userId, newClinic, (error, addedClinic) => {
+      console.log("*** addedClinic ***", addedClinic);
+      res.redirect("/appointment");
+    });
   };
+
+  const addAppointment = (req, res) => {
+
+    console.log("*** req.body ***", req.body);
+
+    // const userId = req.cookies.user_id
+    const userId = 1;
+    const newAppointment = req.body;
+
+    db.appointment.addAppointment(userId, newAppointment, (error, addedAppointment) => {
+      if (error) {
+        console.log("*** error in query ***", error);
+      } else {
+        console.log("*** addedAppointment ***", addedAppointment);
+      }
+      res.redirect("/appointment");
+    });
+
+
+  }
 
   /**
    * ===========================================
@@ -61,6 +84,7 @@ module.exports = db => {
   return {
     index,
     add,
-    addClinic
+    addClinic,
+    addAppointment
   };
 };

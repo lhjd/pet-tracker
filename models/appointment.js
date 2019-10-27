@@ -3,6 +3,8 @@
  * Export model functions as a module
  * ===========================================
  */
+const moment = require("moment");
+
 module.exports = dbPoolInstance => {
   // `dbPoolInstance` is accessible within this function scope
   const add = (newAppointment, callback) => {
@@ -103,11 +105,39 @@ module.exports = dbPoolInstance => {
     })
   }
 
+  const addAppointment = (userId, newAppointment, callback) => {
+
+    const query = `INSERT INTO appointment (clinic_id, pet_id, date, time) VALUES ($1, $2, $3, $4) RETURNING *`;
+
+    const parameters = [
+      newAppointment.clinic_id,
+      newAppointment.pet_id,
+      newAppointment.date,
+      newAppointment.formattedTime
+    ]
+
+    dbPoolInstance.query(query, parameters, (error, queryResult) => {
+
+      if (error) {
+        callback(error, null);
+      } else {
+        if (queryResult.rows.length > 0) {
+          callback(null, queryResult.rows);
+        } else {
+          callback(null, null);
+        }
+      }
+    });
+
+
+  }
+
 
   return {
     getAllAppointments,
     add,
     addClinic,
-    getClinicByUser
+    getClinicByUser,
+    addAppointment
   };
 };
