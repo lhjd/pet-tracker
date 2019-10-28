@@ -2,35 +2,16 @@ document
   .querySelector("#addAllergyRecordBtn")
   .addEventListener("click", event => {
     // event.preventDefault();
-    const recordSymptom = document.querySelector("#record-symptom").value;
-    const recordFood = document.querySelector("#record-food").value;
-    var data = { symptom: recordSymptom, food: recordFood };
+    const pet_id = document.querySelector("#record-pet-id").value;
+    const symptom = document.querySelector("#record-symptom").value;
+    const food = document.querySelector("#record-food").value;
+
+    var data = { pet_id, symptom, food };
 
     var request = new XMLHttpRequest(); // new HttpRequest instance
 
-    request.addEventListener("load", function(event) {
-    //   const record = JSON.parse(this.responseText);
-      console.log("*** event ***", event);
-
-    //   let timerInterval;
-    //   Swal.fire({
-    //     title: "Added allergy record!",
-    //     html: "",
-    //     timer: 500,
-    //     onBeforeOpen: () => {
-    //       Swal.showLoading();
-    //     },
-    //     onClose: () => {
-    //       clearInterval(timerInterval);
-    //     }
-    //   }).then(result => {
-    //     if (
-    //       /* Read more about handling dismissals below */
-    //       result.dismiss === Swal.DismissReason.timer
-    //     ) {
-    //       // console.log("I was closed by the timer");
-    //     }
-    //   });
+    request.addEventListener("load", () => {
+      console.log("*** added allergy! ***")
     });
 
     request.open("POST", "/allergy");

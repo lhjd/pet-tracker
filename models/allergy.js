@@ -6,61 +6,63 @@
 module.exports = (dbPoolInstance) => {
 
     // `dbPoolInstance` is accessible within this function scope
-    let add = (newAllergy, callback) => {
-      console.log("*** newAllergy ***", newAllergy);
-      let query = 'INSERT INTO allergy (pet_id, kibbles_id, symptom, food) VALUES ($1, $2, $3, $4) RETURNING *';
-  
-      dbPoolInstance.query(query, newAllergy, (error, queryResult) => {
+    const addAllergy = (newAllergy, callback) => {
+      const { pet_id, symptom, food } = newAllergy;
+
+      let query = 'INSERT INTO allergy (pet_id, symptom, food) VALUES ($1, $2, $3) RETURNING *';
+      
+      const parameters = [ pet_id, symptom, food];
+
+      dbPoolInstance.query(query, parameters, (error, queryResult) => {
         if( error ){
-  
           // invoke callback function with results after query has executed
           console.log("*** error ***", error);
           callback(error, null);
-  
         }else{
-  
-          // invoke callback function with results after query has executed
-  
+          // invoke callback function with results after query has executed  
           if( queryResult.rows.length > 0 ){
-            // console.log("*** queryResult.rows ***", queryResult.rows);
             callback(null, queryResult.rows);
-  
           }else{
-            callback(null, null);
-  
+            callback(null, null);  
           }
         }
       });
     };
   
-    let getAll = (callback) => {
-  
-      let query = 'SELECT * FROM allergy';
-  
-      dbPoolInstance.query(query, (error, queryResult) => {
+    const getAllAllergies = (userId, callback) => {
+      const query = `SELECT
+                  pet.name AS pet_name,
+                  allergy.food, allergy.symptom
+                  FROM 
+                  allergy INNER JOIN pet 
+                  ON pet.id = allergy.pet_id
+                  WHERE allergy.pet_id
+                  IN 
+                  (SELECT pet_id FROM
+                  pet INNER JOIN human_pet 
+                  ON pet.id = human_pet.pet_id 
+                  WHERE human_pet.human_id = $1)`;
+
+      const parameters = [userId];
+
+      dbPoolInstance.query(query, parameters, (error, queryResult) => {
         if( error ){
-  
           // invoke callback function with results after query has executed
           callback(error, null);
-  
         }else{
-  
           // invoke callback function with results after query has executed
-  
           if( queryResult.rows.length > 0 ){
             callback(null, queryResult.rows);
-  
           }else{
             callback(null, null);
-  
           }
         }
       });
     };
   
     return {
-      getAll,
-      add
+      getAllAllergies,
+      addAllergy
     };
   };
   

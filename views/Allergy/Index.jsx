@@ -1,14 +1,18 @@
 const React = require("react");
 const DefaultLayout = require("../Layout/DefaultLayout");
-const AddModal = require("./AddModal");
+const AddAllergyModal = require("./AddAllergyModal");
 
 class Index extends React.Component {
   render() {
+    console.log("*** this.props.allAllergies ***", this.props.allAllergies);
+    // console.log("*** this.props.allPets ***", this.props.allPets);
+
     let allAllergies = "";
 
     if (this.props.allAllergies) {
       allAllergies = this.props.allAllergies.map(allergy => (
         <React.Fragment>
+          <p>Pet: {allergy.pet_name}</p>
           <p>Allergy: {allergy.symptom}</p>
           <p>Food: {allergy.food}</p>
           <hr />
@@ -41,7 +45,7 @@ class Index extends React.Component {
             <div className="col">{allAllergies}</div>
           </div>
         </div>
-        <AddModal />
+        <AddAllergyModal pets={this.props.allPets} />
         <script src="/allergy.js"></script>
       </DefaultLayout>
     );

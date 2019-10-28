@@ -23,18 +23,18 @@ CREATE TABLE IF NOT EXISTS human_pet (
 
 CREATE TABLE IF NOT EXISTS appointment (
     id SERIAL PRIMARY KEY,
-    pet_id INTEGER,
     clinic_id INTEGER,
+    pet_id INTEGER,
     date DATE,
     time TIMESTAMPTZ
 );
 
 CREATE TABLE IF NOT EXISTS clinic (
     id SERIAL PRIMARY KEY,
+    human_id INTEGER,
     name TEXT,
     address TEXT,
-    phone INTEGER,
-    email TEXT
+    phone INTEGER
 );
 
 CREATE TABLE IF NOT EXISTS weight (
@@ -47,7 +47,6 @@ CREATE TABLE IF NOT EXISTS weight (
 CREATE TABLE IF NOT EXISTS allergy (
     id SERIAL PRIMARY KEY,
     pet_id INTEGER,
-    kibbles_id INTEGER,
     symptom TEXT,
     food TEXT
 );

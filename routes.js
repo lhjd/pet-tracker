@@ -27,15 +27,15 @@ module.exports = (app, allModels) => {
   app.post('/clinic', appointmentControllerCallbacks.addClinicByUser);
 
   app.get('/weight', weightControllerCallbacks.index);
-  app.get('/data/weight/:id', weightControllerCallbacks.all);
-  // app.get('/weight/add', weightControllerCallbacks.add);
   app.post('/weight', weightControllerCallbacks.addWeight);
+  app.get('/data/weight/:id', weightControllerCallbacks.all);
   
   app.get('/allergy', allergyControllerCallbacks.index);
-  app.get('/allergy/add', allergyControllerCallbacks.add);
-  app.post('/allergy', allergyControllerCallbacks.add);
+  app.post('/allergy', allergyControllerCallbacks.addAllergy);
+
   app.get('/kibbles', kibblesControllerCallbacks.index);
   app.post('/kibbles', kibblesControllerCallbacks.add);
   app.post('/feeding', kibblesControllerCallbacks.addFeeding);
-  app.get('/random/dog', randomControllerCallbacks.index)
+
+  app.get('/random/dog', randomControllerCallbacks.index);
 };
