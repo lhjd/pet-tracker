@@ -1,9 +1,5 @@
 const React = require("react");
-const Footer = require("../UI/Footer");
-const Header = require("../UI/Header");
 const DefaultLayout = require("../Layout/DefaultLayout");
-const Chart = require("chart.js");
-const moment = require("moment");
 const AddWeightModal = require("./AddWeightModal");
 
 class Index extends React.Component {
