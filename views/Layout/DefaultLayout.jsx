@@ -13,6 +13,7 @@ class DefaultLayout extends React.Component {
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
           />
           <title>{this.props.title}</title>
+          <link rel="shortcut icon" href="#" />
           <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
@@ -36,14 +37,21 @@ class DefaultLayout extends React.Component {
             integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E="
             crossorigin="anonymous"
           />
+          <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.datatables.net/v/bs4/dt-1.10.20/r-2.2.3/datatables.min.css"
+          />
+
+          <link rel="stylesheet" href="/style.css" />
+        </head>
+        <body>
           <script
             src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.9.6/holder.min.js"
             integrity="sha256-yF/YjmNnXHBdym5nuQyBNU62sCUN9Hx5awMkApzhZR0="
             crossorigin="anonymous"
           ></script>
-          <link rel="stylesheet" href="/style.css" />
-        </head>
-        <body>
+
           <script
             src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"
             integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ="
@@ -70,6 +78,11 @@ class DefaultLayout extends React.Component {
             crossorigin="anonymous"
           ></script>
           {/* <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script> */}
+
+          <script
+            type="text/javascript"
+            src="https://cdn.datatables.net/v/bs4/dt-1.10.20/r-2.2.3/datatables.min.js"
+          ></script>
           <script src="/script.js"></script>
           <Header />
           {this.props.children}

@@ -1,4 +1,20 @@
 // function for updating the chart with data from backend
+function populateTable(dataSet) {
+  if ($.fn.dataTable.isDataTable("#weight-table")) {
+    let table = $("#weight-table").DataTable();
+    table
+      .clear()
+      .rows.add(dataSet)
+      .draw();
+  } else {
+    $("#weight-table").DataTable({
+      data: dataSet,
+      columns: [{ title: "Date" }, { title: "Weight" }],
+      responsive: true,
+    });
+  }
+}
+
 function addDataToChart(chart, label, data) {
   chart.data.labels.length = 0;
 
@@ -20,10 +36,16 @@ function addDataToChart(chart, label, data) {
 // callback for processsing the weight data from backend and update the chart
 function getWeightDataResponseHandler() {
   if (this.responseText) {
-    const records = JSON.parse(this.responseText).data;
-    const weightLabels = records.map(record => moment(record.x).toDate());
-    const weight = records.map(record => record.y);
+    const graphData = JSON.parse(this.responseText).graphData;
+    const tableData = JSON.parse(this.responseText).tableData;
+
+    console.log("graphData", graphData);
+    console.log("tableData", tableData);
+    const weightLabels = graphData.map(record => moment(record.x));
+    const weight = graphData.map(record => record.y);
+
     addDataToChart(weightChart, weightLabels, weight);
+    populateTable(tableData);
   } else {
     // reset the chart
     weightChart.data.labels.length = 0;
@@ -31,6 +53,19 @@ function getWeightDataResponseHandler() {
       dataset.data.length = 0;
     });
     weightChart.update();
+
+    if ($.fn.dataTable.isDataTable("#weight-table")) {
+      let table = $("#weight-table").DataTable();
+      table
+        .clear()
+        .draw();
+    } else {
+      $("#weight-table").DataTable({
+        columns: [{ title: "Date" }, { title: "Weight" }],
+        responsive: true,
+      });
+    }
+  
   }
 }
 
@@ -95,7 +130,9 @@ let weightChart = new Chart(ctx, config);
 getWeightData(1);
 
 function addWeightRecordHanlder(petId) {
-  document.querySelector('#getWeightRecordsByPet [value="' + petId + '"]').selected = true;
+  document.querySelector(
+    '#getWeightRecordsByPet [value="' + petId + '"]'
+  ).selected = true;
   getWeightData(petId);
 }
 
@@ -106,7 +143,7 @@ document
     const record = document.querySelector("#record-weight").value;
     const date = document.querySelector("#record-date").value;
     const pet_id = document.querySelector("#record-pet-id").value;
-    const data = { record, date, pet_id};
+    const data = { record, date, pet_id };
 
     const request = new XMLHttpRequest(); // new HttpRequest instance
     request.addEventListener("load", () => {
@@ -122,6 +159,5 @@ document
   .querySelector("#getWeightRecordsByPet")
   .addEventListener("change", event => {
     const petId = event.target.value;
-    console.log("petId", petId);
     getWeightData(petId);
   });

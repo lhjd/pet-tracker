@@ -29,17 +29,6 @@ class Index extends React.Component {
       });
     }
 
-    let weightRows = <p>No weight record found</p>;
-    if (this.props.allWeightsByPet) {
-      weightRows = this.props.allWeightsByPet.map((weight, i) => (
-        <tr>
-          <th scope="row">{i + 1}</th>
-          <td>{moment(weight.date.toString()).format("L")}</td>
-          <td>{weight.record}</td>
-        </tr>
-      ));
-    }
-
     return (
       <DefaultLayout title="Weight">
         <div
@@ -85,20 +74,12 @@ class Index extends React.Component {
           <div className="row">
             <div className="col">
               <canvas id="myChart" width="400" height="400"></canvas>
+              <hr/>
             </div>
           </div>
           <div className="row">
             <div className="col">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Weight (kg)</th>
-                  </tr>
-                </thead>
-                <tbody>{weightRows}</tbody>
-              </table>
+              <table id="weight-table" class="table table-striped table-bordered" width="100%"></table>
             </div>
           </div>
         </div>
