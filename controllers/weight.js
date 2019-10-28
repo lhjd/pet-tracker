@@ -1,3 +1,5 @@
+const moment = require('moment');
+
 module.exports = db => {
   /**
    * ===========================================
@@ -10,11 +12,15 @@ module.exports = db => {
 
     db.weight.getAllWeightsByPet(petId, (error, allWeightsByPet) => {
       if (allWeightsByPet) {
-        const data = allWeightsByPet.map(weight => ({
+        const graphData = allWeightsByPet.map(weight => ({
           x: weight.date,
           y: weight.record
         }));
-        res.send({ data });
+        const tableData = allWeightsByPet.map(weight => ([
+          moment(weight.date).format("L"), weight.record
+        ]));
+        console.log("*** tableData ***", tableData);
+        res.send({ graphData, tableData });
       } else {
         res.send(null);
       }
