@@ -3,7 +3,7 @@ const moment = require("moment");
 
 class AddWeightModal extends React.Component {
   render() {
-    console.log("*** this.props.pets ***", this.props.pets);
+    // console.log("*** this.props.pets ***", this.props.pets);
 
     let petOptions = [];
     if (this.props.pets) {

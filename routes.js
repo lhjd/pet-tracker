@@ -27,7 +27,7 @@ module.exports = (app, allModels) => {
   app.post('/clinic', appointmentControllerCallbacks.addClinicByUser);
 
   app.get('/weight', weightControllerCallbacks.index);
-  app.get('/data/weight/all', weightControllerCallbacks.all);
+  app.get('/data/weight/:id', weightControllerCallbacks.all);
   // app.get('/weight/add', weightControllerCallbacks.add);
   app.post('/weight', weightControllerCallbacks.addWeight);
   

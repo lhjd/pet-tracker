@@ -6,8 +6,8 @@ module.exports = db => {
    */
 
   let all = (req, res) => {
-    // const petId = req.body.petId;
-    const petId = 1;
+    const petId = req.params.id;
+
     db.weight.getAllWeightsByPet(petId, (error, allWeightsByPet) => {
       if (allWeightsByPet) {
         const data = allWeightsByPet.map(weight => ({
@@ -16,25 +16,35 @@ module.exports = db => {
         }));
         res.send({ data });
       } else {
-        res.send("");
+        res.send(null);
       }
     });
   };
 
   const index = (req, res) => {
     // const userId = req.cookies.user_id;
+
+    // console.log("*** req.query ***", req.query);
+
     const userId = 1;
 
     db.pet.getPetByUserId(userId, (error, allPets) => {
       // console.log("*** allPets ***", allPets);
       if (allPets) {
-        const defaultPetId = allPets[0].pet_id;
-        console.log("*** defaultPetId ***", defaultPetId);
-        db.weight.getAllWeightsByPet(defaultPetId, (error, allWeightsByPet) => {
+
+        let petId = allPets[0].pet_id;
+
+        if (req.query.pet_id) {
+          petId = req.query.pet_id;
+        }
+
+        // console.log("*** petId ***", petId);
+        db.weight.getAllWeightsByPet(petId, (error, allWeightsByPet) => {
           const data = {
             allWeightsByPet,
             allPets
           };
+          // console.log("*** allWeightByPet!! ***", allWeightsByPet);
           res.render("Weight/Index", data);
         });
       } else {
@@ -48,7 +58,8 @@ module.exports = db => {
     const newWeight = [pet_id, date, record];
 
     db.weight.addWeight(newWeight, (error, addedWeight) => {
-      res.redirect("/weight");
+      console.log("*** addedWeight ***", addedWeight);
+      res.send("added weight record!");
     });
   };
 
