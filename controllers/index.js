@@ -11,21 +11,34 @@ module.exports = db => {
 
   const index = (req, res) => {
     if (req.cookies.session_id && req.cookies.user_id) {
-      const user_id = req.cookies.user_id;
-      const session_id = req.cookies.session_id;
-      const hashed_session_id = sha256(process.env.SALT + user_id);
-      if (session_id === hashed_session_id) {
-        request(
-          "https://dog.ceo/api/breeds/image/random",
-          (error, response, body) => {
-            if (!error && response.statusCode == 200) {
-              const result = JSON.parse(body);
-              res.render("Index/Index", { random: result });
-            } else {
-              res.render("Index/Index");
-            }
+      const userId = req.cookies.user_id;
+      const sessionId = req.cookies.session_id;
+      const hashedSessionId = sha256(process.env.SALT + userId);
+      if (sessionId === hashedSessionId) {
+        db.pet.getPetByUserId(userId, (error, allPets) => {
+          if (error) {
+            console.log("*** error retrieving pets ***", error) 
           }
-        );
+          request(
+            "https://dog.ceo/api/breeds/image/random",
+            (error, response, body) => {
+              if (!error && response.statusCode == 200) {
+                const result = JSON.parse(body);
+                const data = {
+                  random: result,
+                  allPets: allPets
+                };
+
+                res.render("Index/Index", data);
+              } else {
+                const data = {
+                  allPets: allPets
+                }
+                res.render("Index/Index", data);
+              }
+            }
+          );
+        });
       } else {
         res.redirect("/login");
       }
@@ -59,7 +72,7 @@ module.exports = db => {
 
   const login = (req, res) => {
     if (req.method === "GET") {
-      console.log("*** req.cookies ***", req.cookies);
+      // console.log("*** req.cookies ***", req.cookies);
       if (req.cookies.session_id && req.cookies.user_id) {
         const user_id = req.cookies.user_id;
         const session_id = req.cookies.session_id;

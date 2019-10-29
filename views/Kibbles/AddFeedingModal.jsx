@@ -100,18 +100,18 @@ class AddModal extends React.Component {
                   </select>
                 </div>
                 <div class="form-group">
-                  <label for="record-daily-frequency">Daily Frequency</label>
+                  <label for="record-daily-frequency">Daily feeding frequency</label>
                   <input
                     type="number"
                     class="form-control"
                     id="record-daily-frequency"
                     name="daily_frequency"
                     aria-describedby="daily frequency"
-                    placeholder="Enter daily freqency"
+                    placeholder="Enter daily feeding freqency"
                   />
                 </div>
                 <div class="form-group">
-                  <label for="record-portion-weight">Portion Weight</label>
+                  <label for="record-portion-weight">Each Portion Weight (g)</label>
                   <input
                     type="number"
                     step="0.1"

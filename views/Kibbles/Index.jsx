@@ -15,11 +15,13 @@ class Index extends React.Component {
     if (this.props.allFeeding) {
       allFeeding = this.props.allFeeding.map(feeding => (
         <li>
-            <p>Plan: {feeding.plan_name}</p>
-            <p>Pet: {feeding.name}</p>
-            <p>Daily frequency: {feeding.daily_frequency}</p>
-            <p>Portion weight: {feeding.portion_weight}g</p>
-            <p>Kibbles: {feeding.brand} - {feeding.description}</p>
+          <p>Plan: {feeding.plan_name}</p>
+          <p>Pet: {feeding.name}</p>
+          <p>Daily frequency: {feeding.daily_frequency}</p>
+          <p>Portion weight: {feeding.portion_weight}g</p>
+          <p>
+            Kibbles: {feeding.brand} - {feeding.description}
+          </p>
         </li>
       ));
     }
@@ -51,10 +53,15 @@ class Index extends React.Component {
 
     return (
       <DefaultLayout title="Kibbles">
-        <div className="container" style={{ "margin-bottom": "100px", "margin-top" : "10px" }}>
+        <div
+          className="container"
+          style={{ "margin-bottom": "100px", "margin-top": "10px" }}
+        >
           <div className="row">
             <div className="col">
-              <h3><i class="fas fa-ring mr-2"></i>Feeding</h3>
+              <h3>
+                <i class="fas fa-ring mr-2"></i>Feeding
+              </h3>
             </div>
           </div>
           <div className="row m-3">
@@ -64,7 +71,7 @@ class Index extends React.Component {
                 class="btn btn-warning"
                 data-toggle="modal"
                 data-target="#addKibblesModal"
-                style={{ "border-radius": "5%", "width" : "120px" }}
+                style={{ "border-radius": "5%", width: "120px" }}
               >
                 <i class="fas fa-plus-circle mr-2"></i>kibbles
               </button>
@@ -75,7 +82,7 @@ class Index extends React.Component {
                 class="btn btn-warning"
                 data-toggle="modal"
                 data-target="#addFeedingModal"
-                style={{ "border-radius": "5%", "width": "120px"}}
+                style={{ "border-radius": "5%", width: "120px" }}
               >
                 <i class="fas fa-plus-circle mr-2"></i>plan
               </button>
@@ -83,22 +90,64 @@ class Index extends React.Component {
           </div>
           <div className="row">
             <div className="col">
-              <h6><i class="fas fa-dog mr-2"></i>Your pets:</h6>
+              <h6>
+                <i class="fas fa-dog mr-2"></i>
+                {allPets.length > 1 ? "My Pets" : "My Pet"}
+              </h6>
               <ol>{allPets}</ol>
               <hr />
             </div>
           </div>
           <div className="row">
             <div className="col">
-              <h6><i class="fas fa-box-open mr-2"></i>Your kibbles:</h6>
-              <ol>{allKibbles}</ol>
+              <h6>
+                <i class="fas fa-box-open mr-2"></i>
+                My kibbles:
+              </h6>
+              <ol>
+                {allKibbles.length > 0 ? (
+                  allKibbles
+                ) : (
+                  <a
+                    data-toggle="modal"
+                    data-target="#addKibblesModal"
+                    style={{
+                      "text-decoration": "underline",
+                      "cursor": "pointer",
+                      "color": "brown"
+                    }}
+                  >
+                    No kibbles found. Add one now.
+                  </a>
+                )}
+              </ol>
               <hr />
             </div>
           </div>
           <div className="row">
             <div className="col">
-              <h6><i class="fas fa-ring mr-2"></i>Feeding plans:</h6>
-              <ol>{allFeeding}</ol>
+              <h6>
+                <i class="fas fa-ring mr-2"></i>
+                {allPets.length > 1 ? "My Feeding Plan" : "My Feeding Plans"}
+              </h6>
+              <ol>
+                {allFeeding}
+                {allFeeding.length > 0 ? (
+                  allFeeding
+                ) : (
+                  <a
+                    data-toggle="modal"
+                    data-target="#addFeedingModal"
+                    style={{
+                      "text-decoration": "underline",
+                      "cursor": "pointer",
+                      "color" : "brown"
+                    }}
+                  >
+                    No feeding plans found. Add one now.
+                  </a>
+                )}
+              </ol>
             </div>
           </div>
         </div>

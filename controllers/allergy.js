@@ -37,11 +37,13 @@ module.exports = db => {
     if (req.cookies.user_id && req.cookies.session_id) {
       let userId = req.cookies.user_id;
       let sessionId = req.cookies.session_id;
-      let hashedSessionId = sha256(process.env.SALT + sessionId);
+      let hashedSessionId = sha256(process.env.SALT + userId);
 
       if (sessionId === hashedSessionId) {
         const newAllergy = req.body;
+        console.log("*** newAllergy ***", newAllergy);
         db.allergy.addAllergy(newAllergy, (error, addedAllergy) => {
+          console.log("*** addedAllergy ***", addedAllergy);
           res.redirect("/allergy");
         });
       } else {

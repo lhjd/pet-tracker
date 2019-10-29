@@ -10,7 +10,7 @@ class Header extends React.Component {
           role="navigation"
         >
           <a class="navmenu-brand" href="#">
-            <i class="fas fa-paw mr-2"></i>Petbook
+            <i class="fas fa-paw mr-2"></i>Pet Track
           </a>
 
           <ul class="nav navmenu-nav flex-column">

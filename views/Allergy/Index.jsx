@@ -4,9 +4,6 @@ const AddAllergyModal = require("./AddAllergyModal");
 
 class Index extends React.Component {
   render() {
-    console.log("*** this.props.allAllergies ***", this.props.allAllergies);
-    // console.log("*** this.props.allPets ***", this.props.allPets);
-
     let allAllergies = "";
 
     if (this.props.allAllergies) {

@@ -16,7 +16,7 @@ class AddModal extends React.Component {
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="addKibblesModalLabel">
-                Add Kibbles
+                <i class="fas fa-plus-circle mr-2"></i>kibbles
               </h5>
               <button
                 type="button"
@@ -51,7 +51,7 @@ class AddModal extends React.Component {
                   />
                 </div>
                 <div class="form-group">
-                  <label for="record-weight">Weight</label>
+                  <label for="record-weight">Net Weight</label>
                   <input
                     type="number"
                     step="0.1"

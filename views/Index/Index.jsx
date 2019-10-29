@@ -5,6 +5,16 @@ const AddPetModal = require("../Index/AddPetModal");
 class Index extends React.Component {
   render() {
     // console.log("*** this.props ***", this.props.random);
+
+    let allPets = "";
+    if (this.props.allPets) {
+      allPets = this.props.allPets.map(pet => (
+        <li>
+          <p>{pet.name}</p>
+        </li>
+      ));
+    }
+
     return (
       <DefaultLayout title="Home">
         <div
@@ -46,6 +56,15 @@ class Index extends React.Component {
                 alt="Random Dog Photo"
                 className="img-fluid rounded"
               />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              <h6><i class="fas fa-dog mr-2"></i>
+              { allPets.length > 1 ? "My Pets" : "My Pet"}
+              </h6>
+              <ol>{allPets}</ol>
+              <hr />
             </div>
           </div>
         </div>
