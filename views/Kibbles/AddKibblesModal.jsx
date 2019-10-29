@@ -38,6 +38,7 @@ class AddModal extends React.Component {
                     name="brand"
                     aria-describedby="brand"
                     placeholder="Enter brand"
+                    required
                   />
                 </div>
                 <div class="form-group">
@@ -48,17 +49,19 @@ class AddModal extends React.Component {
                     id="record-description"
                     name="description"
                     placeholder="Enter description"
+                    required
                   />
                 </div>
                 <div class="form-group">
-                  <label for="record-weight">Net Weight</label>
+                  <label for="record-weight">Net Weight (kg)</label>
                   <input
                     type="number"
                     step="0.1"
                     class="form-control"
                     id="record-weight"
                     name="weight"
-                    placeholder="Enter weight"
+                    placeholder="Enter weight (kg)"
+                    required
                   />
                 </div>
                 <div class="form-group">
@@ -70,6 +73,7 @@ class AddModal extends React.Component {
                     id="record-price"
                     name="price"
                     placeholder="Enter price"
+                    required
                   />
                 </div>
                 <div class="form-group">
@@ -80,6 +84,7 @@ class AddModal extends React.Component {
                     id="record-date-purchased"
                     name="date_purchased"
                     defaultValue={moment().format("YYYY-MM-DD")}
+                    required
                   />
                 </div>
                 <div class="form-group">
@@ -90,6 +95,7 @@ class AddModal extends React.Component {
                     id="record-date-opened"
                     name="date_opened"
                     defaultValue={moment().format("YYYY-MM-DD")}
+                    required
                   />
                 </div>
                 <div class="form-group">
@@ -100,6 +106,7 @@ class AddModal extends React.Component {
                     id="record-date-expiry"
                     name="date_expiry"
                     defaultValue={moment().format("YYYY-MM-DD")}
+                    required
                   />
                 </div>
                 <input

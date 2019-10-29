@@ -18,12 +18,16 @@ module.exports = db => {
         db.kibbles.getAll(userId, (error, allKibbles) => {
           db.pet.getPetByUserId(userId, (error, allPets) => {
             db.kibbles.getFeedingKibbles(userId, (error, allFeeding) => {
-              const data = {
-                allKibbles,
-                allPets,
-                allFeeding
-              };
-              res.render("Kibbles/Index", data);
+              db.kibbles.getConsumption(userId, (error, kibblesConsumption) => {
+                console.log("*** kibblesConsumption ***", kibblesConsumption);
+                const data = {
+                  allKibbles,
+                  allPets,
+                  allFeeding,
+                  kibblesConsumption
+                };
+                res.render("Kibbles/Index", data);
+              });
             });
           });
         });

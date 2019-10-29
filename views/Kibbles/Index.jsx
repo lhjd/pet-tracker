@@ -7,6 +7,63 @@ const moment = require("moment");
 
 class Index extends React.Component {
   render() {
+    console.log(
+      "*** this.props.kibblesConsumption ***",
+      this.props.kibblesConsumption
+    );
+
+    let kibblesConsumption = "";
+    if (this.props.kibblesConsumption) {
+      kibblesConsumption = this.props.kibblesConsumption.map(kibbles => {
+  
+        let percentConsumed = (+kibbles.total_daily_consumption / 1000 * kibbles.days) / +kibbles.weight * 100;
+        let percentLeft = (100 - percentConsumed).toFixed(1);
+        let percentLeftWithPercentSign = percentLeft + "%";
+        let percentLeftBar = { "width" : percentLeftWithPercentSign };
+
+        return (
+        <div>
+          <p>Brand: {kibbles.brand}</p>
+          <p>Opened on: {moment(kibbles.date_opened).format("L")}</p>
+          <p>Consumed for {kibbles.days} days</p>
+          <p>
+            Total daily consumption:{" "}
+            {(kibbles.total_daily_consumption / 1000).toFixed(1)}kg
+          </p>
+          <p>
+            Total consumed so far:{" "}
+            {((+kibbles.total_daily_consumption / 1000) * kibbles.days).toFixed(
+              1
+            )}
+            kg
+          </p>
+          <p>Kibbles weight: {(+kibbles.weight).toFixed(1)}kg</p>
+          <p>
+            Kibbles left:{" "}
+            {(
+              +kibbles.weight -
+              (+kibbles.total_daily_consumption / 1000) * kibbles.days
+            ).toFixed(1)}
+            kg
+          </p>
+          <div class="progress">
+            <div
+              class="progress-bar bg-success"
+              role="progressbar"
+              style={percentLeftBar}
+              aria-valuenow={percentLeft}
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              {percentLeft}%
+            </div>
+          </div>
+        </div>
+      );
+      });
+    }
+    console.log("*** kibblesConsumption ***", kibblesConsumption);
+
     let allFeeding = "";
     if (this.props.allFeeding) {
       allFeeding = this.props.allFeeding.map(feeding => (
@@ -135,6 +192,15 @@ class Index extends React.Component {
                   </a>
                 )}
               </ol>
+              <hr />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              <h6>
+                <i class="fas fa-utensils mr-2"></i>Kibbles consumption
+              </h6>
+              {kibblesConsumption}
             </div>
           </div>
         </div>
