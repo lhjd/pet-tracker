@@ -1,0 +1,22 @@
+{
+    "short_name": "Pet Tracker",
+    "name": "Pet Tracker",
+    "icons": [
+      {
+        "src": "/images/icons-128.png",
+        "type": "image/png",
+        "sizes": "128X128"
+      },
+      {
+        "src": "/images/icons-512.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": "/",
+    "background_color": "#494ca2",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#494ca2"
+  }
+  
