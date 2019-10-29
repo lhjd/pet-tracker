@@ -51,22 +51,25 @@ module.exports = db => {
     if (req.method === "GET") {
       res.render("Index/Register");
     } else if (req.method === "POST") {
-      // console.log("*** POST req.body ***", req.body);
       const newUser = req.body;
 
       newUser.password = sha256(newUser.password + process.env.SALT);
 
-      db.index.registerUser(newUser, (error, registeredUser) => {
-        if (error) {
-          console.log("*** error ***", error);
+      db.index.checkIfEmailExists(newUser.email, (error, userWithThisEmail) => {
+        if (userWithThisEmail) {
+          res.render("Index/Register", { msg: "This email already exists, please login."})
+        } else {
+          db.index.registerUser(newUser, (error, registeredUser) => {
+            if (error) {
+              console.log("*** error ***", error);
+            }
+            res.cookie("user_id", registeredUser[0].id);
+            const session_id = sha256(process.env.SALT + registeredUser[0].id);
+            res.cookie("session_id", session_id);
+            res.redirect("/");
+          });
         }
-        res.cookie("user_id", registeredUser[0].id);
-        const session_id = sha256(process.env.SALT + registeredUser[0].id);
-        res.cookie("session_id", session_id);
-        res.redirect("/");
       });
-    } else {
-      res.render("Index/Register");
     }
   };
 

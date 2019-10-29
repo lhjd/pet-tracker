@@ -6,7 +6,7 @@
 module.exports = dbPoolInstance => {
   // `dbPoolInstance` is accessible within this function scope
 
-  let getAll = callback => {
+  const getAll = callback => {
     let query = "SELECT * FROM index";
 
     dbPoolInstance.query(query, (error, queryResult) => {
@@ -23,7 +23,7 @@ module.exports = dbPoolInstance => {
         }
       }
     });
-  }
+  };
 
   const registerUser = (newUser, callback) => {
     const query = `INSERT INTO human (email, password) VALUES ($1, $2) RETURNING *`;
@@ -41,7 +41,7 @@ module.exports = dbPoolInstance => {
         }
       }
     });
-  }
+  };
 
   const logInUser = (existingUser, callback) => {
     const { email, password } = existingUser;
@@ -61,11 +61,30 @@ module.exports = dbPoolInstance => {
         }
       }
     });
-  }
+  };
+
+  const checkIfEmailExists = (email, callback) => {
+    let query = `SELECT * FROM human WHERE email = $1`;
+
+    const parameters = [email];
+
+    dbPoolInstance.query(query, parameters, (error, queryResult) => {
+      if (error) {
+        callback(error, null);
+      } else {
+        if (queryResult.rows.length > 0) {
+          callback(null, queryResult.rows);
+        } else {
+          callback(null, null);
+        }
+      }
+    });
+  };
 
   return {
     getAll,
     registerUser,
-    logInUser
+    logInUser,
+    checkIfEmailExists
   };
 };
