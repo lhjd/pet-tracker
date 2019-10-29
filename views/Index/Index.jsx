@@ -1,5 +1,4 @@
 const React = require("react");
-const Footer = require("../UI/Footer");
 const DefaultLayout = require("../Layout/DefaultLayout");
 
 class Index extends React.Component {
@@ -31,7 +30,6 @@ class Index extends React.Component {
             </div>
           </div>
         </div>
-        <Footer />
         <script src="/home.js"></script>
       </DefaultLayout>
     );

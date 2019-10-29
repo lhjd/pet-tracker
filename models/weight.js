@@ -8,10 +8,13 @@ module.exports = (dbPoolInstance) => {
   // `dbPoolInstance` is accessible within this function scope
 
   let addWeight = (newWeight, callback) => {
+    const { pet_id, date, record } = newWeight;
 
-    let query = 'INSERT INTO weight (pet_id, date, record) VALUES ($1, $2, $3) RETURNING *';
+    const query = 'INSERT INTO weight (pet_id, date, record) VALUES ($1, $2, $3) RETURNING *';
 
-    dbPoolInstance.query(query, newWeight, (error, queryResult) => {
+    const parameters = [pet_id, date, record];
+
+    dbPoolInstance.query(query, parameters, (error, queryResult) => {
       if( error ){
 
         // invoke callback function with results after query has executed
