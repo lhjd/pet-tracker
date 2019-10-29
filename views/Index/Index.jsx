@@ -6,7 +6,10 @@ class Index extends React.Component {
     // console.log("*** this.props ***", this.props.random);
     return (
       <DefaultLayout title="Home">
-        <div className="container">
+        <div
+          className="container"
+          style={{ "margin-bottom": "100px", "margin-top": "10px" }}
+        >
           <div className="row">
             <div className="col text-center">
               <h3>Home</h3>

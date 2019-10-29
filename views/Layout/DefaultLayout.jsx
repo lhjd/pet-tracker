@@ -42,7 +42,10 @@ class DefaultLayout extends React.Component {
             type="text/css"
             href="https://cdn.datatables.net/v/bs4/dt-1.10.20/r-2.2.3/datatables.min.css"
           />
-
+          <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/4.0.0/css/jasny-bootstrap.min.css"
+          />
           <link rel="stylesheet" href="/style.css" />
         </head>
         <body>
@@ -51,7 +54,6 @@ class DefaultLayout extends React.Component {
             integrity="sha256-yF/YjmNnXHBdym5nuQyBNU62sCUN9Hx5awMkApzhZR0="
             crossorigin="anonymous"
           ></script>
-
           <script
             src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"
             integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ="
@@ -83,7 +85,12 @@ class DefaultLayout extends React.Component {
             type="text/javascript"
             src="https://cdn.datatables.net/v/bs4/dt-1.10.20/r-2.2.3/datatables.min.js"
           ></script>
-          <script src="/script.js"></script>
+
+          <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/4.0.0/js/jasny-bootstrap.min.js"
+          ></script>
+          <script type="text/javascript" src="/script.js"></script>
           <Header />
           {this.props.children}
           <Footer />

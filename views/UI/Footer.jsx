@@ -3,7 +3,7 @@ const React = require("react");
 class Footer extends React.Component {
   render() {
     return (
-      <nav class="navbar fixed-bottom navbar-dark bg-dark">
+      <nav class="navbar fixed-bottom navbar-dark bg-dark d-flex justify-content-around">
         <a class="navbar-brand text-center" href="/">
           <i class="fas fa-home"></i>
           <h6 class="icon-text">Home</h6>
