@@ -9,7 +9,8 @@ class Index extends React.Component {
   render() {
     // console.log("*** this.props.allKibbles ***", this.props.allKibbles);
     // console.log("*** this.props.allPets ***", this.props.allPets);
-    // console.log("*** this.props.allFeeding ***", this.props.allFeeding);
+    console.log("*** this.props.allFeeding ***", this.props.allFeeding);
+    console.log("*** this.props.allFeeding.length ***", this.props.allFeeding.length);
 
     let allFeeding = "";
     if (this.props.allFeeding) {
@@ -128,7 +129,6 @@ class Index extends React.Component {
                 {allPets.length > 1 ? "My Feeding Plan" : "My Feeding Plans"}
               </h6>
               <ol>
-                {allFeeding}
                 {allFeeding.length > 0 ? (
                   allFeeding
                 ) : (

@@ -27,6 +27,18 @@ body {
   color: #c6cbef !important;
 }
 
+.btn-primary {
+  background-color: #494ca2 !important;
+  border-color: #494ca2 !important;
+  box-shadow: 3px 3px #ccc;
+}
+
+.btn-primary:hover {
+  background-color: #c6cbef !important;
+  border-color:#c6cbef !important;
+  color: #494ca2 !important;
+}
+
 .navmenu-brand {
   color: #494ca2 !important;
 }

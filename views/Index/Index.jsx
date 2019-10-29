@@ -30,7 +30,7 @@ class Index extends React.Component {
                 type="button"
                 className="btn btn-primary"
               >
-                Fetch!
+                <i class="fas fa-dog mr-2"></i>Fetch!
               </button>
             </div>
             <div className="col text-center">
@@ -52,6 +52,7 @@ class Index extends React.Component {
                 src={this.props.random.message}
                 alt="Random Dog Photo"
                 className="img-fluid rounded"
+                width="200vw"
               />
             </div>
           </div>

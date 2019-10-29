@@ -18,6 +18,8 @@ module.exports = db => {
         db.kibbles.getAll(userId, (error, allKibbles) => {
           db.pet.getPetByUserId(userId, (error, allPets) => {
             db.kibbles.getFeedingKibbles(userId, (error, allFeeding) => {
+              console.log("*** allFeeding ***", allFeeding);
+              console.log("*** allFeeding.length ***", allFeeding.length);
               const data = {
                 allKibbles,
                 allPets,
@@ -55,6 +57,8 @@ module.exports = db => {
   };
 
   const addFeeding = (req, res) => {
+    console.log("*** addFeeding ***");
+    console.log("*** req.body ***", req.body);
     if (req.cookies.user_id && req.cookies.session_id) {
       let userId = req.cookies.user_id;
       let sessionId = req.cookies.session_id;
