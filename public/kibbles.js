@@ -28,7 +28,6 @@ document
   .querySelector("#addFeedingRecordBtn")
   .addEventListener("click", () => {
     console.log("*** addFeedingRecordBtn ***");
-    event.preventDefault();
     const pet_id = document.querySelector("#record-pet-id").value;
     const daily_frequency = document.querySelector("#record-daily-frequency").value;
     const portion_weight = document.querySelector("#record-portion-weight").value;
@@ -45,5 +44,4 @@ document
     request.open("POST", "/feeding");
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     request.send(JSON.stringify(data));
-    $("#addFeedingModal").modal("hide");
   });
