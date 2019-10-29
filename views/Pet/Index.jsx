@@ -25,7 +25,7 @@ class Index extends React.Component {
         <div className="container">
           <div className="row">
             <div className="col">
-              <div class="card" style={{"width":"18rem"}}>
+              <div class="card mx-auto" style={{"width":"18rem"}}>
                 <img src="https://images.pexels.com/photos/356378/pexels-photo-356378.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="card-img-top" alt="pet picture" />
                 <div class="card-body">
                   <h5 class="card-title">{name}</h5>
