@@ -19,7 +19,7 @@ class Index extends React.Component {
 
     return (
       <DefaultLayout title="Allergies">
-        <div className="container" style={{ "margin-bottom": "100px", "margin-top" : "10px" }}>
+        <div className="container">
           <div className="row">
             <div className="col">
               <h3><i class="fas fa-bomb mr-2"></i>Allergy</h3>

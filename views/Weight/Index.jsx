@@ -27,10 +27,7 @@ class Index extends React.Component {
 
     return (
       <DefaultLayout title="Weight">
-        <div
-          className="container"
-          style={{ "margin-bottom": "100px", "margin-top": "10px" }}
-        >
+        <div className="container">
           <div className="row">
             <div className="col">
               <h3>
@@ -70,12 +67,16 @@ class Index extends React.Component {
           <div className="row">
             <div className="col">
               <canvas id="myChart" width="400" height="400"></canvas>
-              <hr/>
+              <hr />
             </div>
           </div>
           <div className="row">
             <div className="col">
-              <table id="weight-table" class="table table-striped table-bordered" width="100%"></table>
+              <table
+                id="weight-table"
+                class="table table-striped table-bordered"
+                width="100%"
+              ></table>
             </div>
           </div>
         </div>

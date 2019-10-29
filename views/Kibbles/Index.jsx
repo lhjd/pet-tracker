@@ -53,10 +53,7 @@ class Index extends React.Component {
 
     return (
       <DefaultLayout title="Kibbles">
-        <div
-          className="container"
-          style={{ "margin-bottom": "100px", "margin-top": "10px" }}
-        >
+        <div className="container">
           <div className="row">
             <div className="col">
               <h3>
@@ -113,8 +110,8 @@ class Index extends React.Component {
                     data-target="#addKibblesModal"
                     style={{
                       "text-decoration": "underline",
-                      "cursor": "pointer",
-                      "color": "brown"
+                      cursor: "pointer",
+                      color: "brown"
                     }}
                   >
                     No kibbles found. Add one now.
@@ -140,8 +137,8 @@ class Index extends React.Component {
                     data-target="#addFeedingModal"
                     style={{
                       "text-decoration": "underline",
-                      "cursor": "pointer",
-                      "color" : "brown"
+                      cursor: "pointer",
+                      color: "brown"
                     }}
                   >
                     No feeding plans found. Add one now.

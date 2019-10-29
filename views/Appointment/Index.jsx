@@ -10,31 +10,32 @@ class Index extends React.Component {
     let allAppointmentsByUser = [];
 
     if (this.props.allAppointmentsByUser) {
-      allAppointmentsByUser = this.props.allAppointmentsByUser.map(appointment => (
-        <div>
-          <p>
-            <strong>{appointment.name}</strong>
-          </p>
-          <p>Pet: {appointment.pet_name}</p>
-          <p>Date:{moment(appointment.date).format("L")}</p>
-          <p>Time:{moment(appointment.time).format("LT")}</p>
-          <p>Clinic:{appointment.clinic_name}</p>
-          <p>Address:{appointment.address}</p>
-          <p>Phone:{appointment.phone}</p>
-          <hr />
-        </div>
-      ));
+      allAppointmentsByUser = this.props.allAppointmentsByUser.map(
+        appointment => (
+          <div>
+            <p>
+              <strong>{appointment.name}</strong>
+            </p>
+            <p>Pet: {appointment.pet_name}</p>
+            <p>Date:{moment(appointment.date).format("L")}</p>
+            <p>Time:{moment(appointment.time).format("LT")}</p>
+            <p>Clinic:{appointment.clinic_name}</p>
+            <p>Address:{appointment.address}</p>
+            <p>Phone:{appointment.phone}</p>
+            <hr />
+          </div>
+        )
+      );
     }
 
     return (
       <DefaultLayout title="Appointments">
-        <div
-          className="container"
-          style={{ "margin-bottom": "100px", "margin-top": "10px" }}
-        >
+        <div className="container">
           <div className="row my-2">
             <div className="col">
-              <h3><i class="fas fa-calendar-alt mr-2"></i>Appointment</h3>
+              <h3>
+                <i class="fas fa-calendar-alt mr-2"></i>Appointment
+              </h3>
             </div>
           </div>
           <div className="row">

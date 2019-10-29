@@ -17,10 +17,7 @@ class Index extends React.Component {
 
     return (
       <DefaultLayout title="Home">
-        <div
-          className="container"
-          style={{ "margin-bottom": "100px", "margin-top": "10px" }}
-        >
+        <div className="container">
           <div className="row">
             <div className="col text-center">
               <h3>Home</h3>
@@ -60,8 +57,9 @@ class Index extends React.Component {
           </div>
           <div className="row">
             <div className="col">
-              <h6><i class="fas fa-dog mr-2"></i>
-              { allPets.length > 1 ? "My Pets" : "My Pet"}
+              <h6>
+                <i class="fas fa-dog mr-2"></i>
+                {allPets.length > 1 ? "My Pets" : "My Pet"}
               </h6>
               <ol>{allPets}</ol>
               <hr />

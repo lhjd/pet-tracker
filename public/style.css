@@ -3,6 +3,30 @@ h6.icon-text {
 }
 
 body {
-  padding-top: 56px;
+  margin-top: 80px;
+  margin-bottom: 100px;
 }
 
+.bg-dark {
+  background-color: #494ca2 !important;
+}
+
+.bg-light {
+  background-color: #e3e7f1 !important;
+}
+
+.btn-warning {
+  background-color: #c6cbef !important;
+  border-color: #c6cbef !important;
+  box-shadow: 3px 3px #ccc;
+}
+
+.btn-warning:hover {
+  background-color: #494ca2 !important;
+  border-color:#494ca2 !important;
+  color: #c6cbef !important;
+}
+
+.navmenu-brand {
+  color: #494ca2 !important;
+}
