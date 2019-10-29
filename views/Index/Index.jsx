@@ -10,7 +10,7 @@ class Index extends React.Component {
     if (this.props.allPets) {
       allPets = this.props.allPets.map(pet => (
         <li>
-          <p>{pet.name}</p>
+          <p><a href={`/pet/${pet.id}`}>{pet.name}</a></p>
         </li>
       ));
     }

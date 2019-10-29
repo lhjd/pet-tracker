@@ -19,6 +19,7 @@ module.exports = (app, allModels) => {
   const allergyControllerCallbacks = require('./controllers/allergy')(allModels);
   const kibblesControllerCallbacks = require('./controllers/kibbles')(allModels);
   const randomControllerCallbacks = require('./controllers/random')(allModels);
+  const petControllerCallbacks = require('./controllers/pet')(allModels);
 
   app.get('/', indexControllerCallbacks.index);
   app.get('/register', indexControllerCallbacks.register);
@@ -27,6 +28,8 @@ module.exports = (app, allModels) => {
   app.post('/login', indexControllerCallbacks.login);
   app.get('/logout', indexControllerCallbacks.logout);
   app.post('/pet', indexControllerCallbacks.addPet);
+  app.get('/pet/:id', petControllerCallbacks.getSinglePet);
+
 
   app.get('/appointment', appointmentControllerCallbacks.index);
   app.post('/appointment', appointmentControllerCallbacks.addAppointmentByUser);

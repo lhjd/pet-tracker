@@ -49,7 +49,6 @@ module.exports = dbPoolInstance => {
     });
   }
   const addFeeding = (req, userId, callback) => {
-    console.log("*** model - addFeeding ***");
     const {
       pet_id, daily_frequency, portion_weight, plan_name
     } = req.body;

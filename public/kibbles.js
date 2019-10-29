@@ -1,7 +1,6 @@
 document
   .querySelector("#addKibblesRecordBtn")
   .addEventListener("click", () => {
-    console.log("*** addKibblesRecordBtn ***");
     const brand = document.querySelector("#record-brand").value;
     const description = document.querySelector("#record-description").value;
     const weight = document.querySelector("#record-weight").value;
@@ -27,7 +26,6 @@ document
   document
   .querySelector("#addFeedingRecordBtn")
   .addEventListener("click", () => {
-    console.log("*** addFeedingRecordBtn ***");
     const pet_id = document.querySelector("#record-pet-id").value;
     const daily_frequency = document.querySelector("#record-daily-frequency").value;
     const portion_weight = document.querySelector("#record-portion-weight").value;

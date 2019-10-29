@@ -65,14 +65,34 @@ module.exports = dbPoolInstance => {
           callback(null, null);
         }
       }
-    })
+    });
+  };
 
+  const getSinglePet = (petId, userId, callback) => {
+    let query = `SELECT * FROM pet 
+                  WHERE pet.id = $1
+                  AND pet.id IN 
+                  (SELECT pet_id FROM human_pet WHERE human_id = $2)`;
+    const parameters = [+petId, +userId];
+    console.log("*** parameters ***", parameters);
 
+    dbPoolInstance.query(query, parameters, (error, queryResult) => {
+      if (error) {
+        callback(error, null);
+      } else {
+        if (queryResult.rows.length > 0) {
+          callback(null, queryResult.rows);
+        } else {
+          callback(null, null);
+        }
+      }
+    });
   };
 
   return {
     getPetByUserId,
     addPet,
-    addPetToUser
+    addPetToUser,
+    getSinglePet
   };
 };

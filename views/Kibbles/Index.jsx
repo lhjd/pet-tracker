@@ -7,11 +7,6 @@ const moment = require("moment");
 
 class Index extends React.Component {
   render() {
-    // console.log("*** this.props.allKibbles ***", this.props.allKibbles);
-    // console.log("*** this.props.allPets ***", this.props.allPets);
-    console.log("*** this.props.allFeeding ***", this.props.allFeeding);
-    console.log("*** this.props.allFeeding.length ***", this.props.allFeeding.length);
-
     let allFeeding = "";
     if (this.props.allFeeding) {
       allFeeding = this.props.allFeeding.map(feeding => (
@@ -43,11 +38,6 @@ class Index extends React.Component {
           <p>
             {kibble.brand} - {kibble.description}
           </p>
-          {/* <p>Weight: {kibble.weight}</p>
-          <p>Price: {kibble.price}</p>
-          <p>Purchased on: {moment(kibble.date_purchased).format("L")}</p>
-          <p>Opened on: {moment(kibble.date_opened).format("L")}</p>
-          <p>Expiring on: {moment(kibble.date_expiry).format("L")}</p> */}
         </li>
       ));
     }
