@@ -102,6 +102,40 @@ module.exports = db => {
     res.redirect("/login");
   };
 
+  const addPet = (req, res) => {
+    if (req.cookies.session_id && req.cookies.user_id) {
+      const userId = req.cookies.user_id;
+      const sessionId = req.cookies.session_id;
+      const hashedSessionId = sha256(process.env.SALT + userId);
+      if (sessionId === hashedSessionId) {
+        const newPet = req.body;
+        console.log("*** newPet ***", newPet);
+        db.pet.addPet(userId, newPet, (error, addedPet) => {
+          if (error) {
+            console.log("*** error in adding pet ***", error);
+          } else {
+            console.log("*** addedPet ***", addedPet);
+            const petId = addedPet[0].id;
+            // console.log("*** petId ***", petId);
+            // console.log("*** userId ***", userId);
+            db.pet.addPetToUser(userId, petId, (error, addedHumanPet) => {
+              if (error) {
+                console.log("*** error in adding pet to human ***", error);
+              } else {
+                console.log("*** addedHumanPet ***", addedHumanPet);
+                res.redirect("/");
+              }
+            });
+          }
+        });
+      } else {
+        res.redirect("/login");
+      }
+    } else {
+      res.redirect("/login");
+    }
+  };
+
   /**
    * ===========================================
    * Export controller functions as a module
@@ -111,6 +145,7 @@ module.exports = db => {
     index,
     register,
     login,
-    logout
+    logout,
+    addPet
   };
 };

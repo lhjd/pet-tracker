@@ -26,6 +26,7 @@ module.exports = (app, allModels) => {
   app.get('/login', indexControllerCallbacks.login);
   app.post('/login', indexControllerCallbacks.login);
   app.get('/logout', indexControllerCallbacks.logout);
+  app.post('/pet', indexControllerCallbacks.addPet);
 
   app.get('/appointment', appointmentControllerCallbacks.index);
   app.post('/appointment', appointmentControllerCallbacks.addAppointmentByUser);
