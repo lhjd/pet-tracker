@@ -39,8 +39,6 @@ function getWeightDataResponseHandler() {
     const graphData = JSON.parse(this.responseText).graphData;
     const tableData = JSON.parse(this.responseText).tableData;
 
-    console.log("graphData", graphData);
-    console.log("tableData", tableData);
     const weightLabels = graphData.map(record => moment(record.x));
     const weight = graphData.map(record => record.y);
 
