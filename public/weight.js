@@ -127,7 +127,10 @@ let config = {
 
 let weightChart = new Chart(ctx, config);
 
-getWeightData(1);
+let petId = document.querySelector("#getWeightRecordsByPet").value;
+if (petId) {
+  getWeightData(petId);
+}
 
 function addWeightRecordHanlder(petId) {
   document.querySelector(
