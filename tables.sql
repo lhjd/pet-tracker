@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS human (
     id SERIAL PRIMARY KEY,
     -- username TEXT,
     email TEXT,
-    password TEXT,
+    password TEXT
     -- phone INTEGER,
     -- first_name TEXT,
     -- last_name TEXT
